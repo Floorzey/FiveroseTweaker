@@ -1,7 +1,10 @@
 return function(api)
 	local env = getgenv()
 	local core = game:GetService('CoreGui')
-	local timeout = math.clamp(tonumber(env.fiverosetweaker_attach_timeout) or 15, 1, 60)
+	local configuredtimeout = tonumber(env.fiverosetweaker_attach_timeout)
+	local timeout = configuredtimeout and configuredtimeout > 0
+		and math.clamp(configuredtimeout, 1, 600)
+		or math.huge
 
 	local function alive(obj)
 		return typeof(obj) == 'Instance' and obj.Parent ~= nil
@@ -365,33 +368,147 @@ return function(api)
 	local lib
 	local unitry = {}
 	local unierr
+	local queued = setmetatable({}, {__mode = 'k'})
+	local retry = setmetatable({}, {__mode = 'k'})
+	local inspect = setmetatable({}, {__mode = 'k'})
+	local watched = setmetatable({}, {__mode = 'k'})
+	local watchers = {}
+	local markedgui = false
+	local nextfallback = os.clock() + 10
+
+	local function mark(name)
+		local fastboot = rawget(api, 'fastboot')
+		if type(fastboot) == 'table' and type(rawget(fastboot, 'mark')) == 'function' then
+			pcall(fastboot.mark, fastboot, name)
+		end
+	end
+
+	local function stopwatchers()
+		for index = #watchers, 1, -1 do
+			local connection = watchers[index]
+			pcall(connection.Disconnect, connection)
+			watchers[index] = nil
+		end
+	end
+
+	local function queue(candidate)
+		if alive(candidate) and candidate:IsA('ScreenGui') then
+			queued[candidate] = true
+		end
+	end
+
+	local function queuefrom(obj)
+		if not alive(obj) then
+			return
+		end
+
+		if obj:IsA('ScreenGui') then
+			queue(obj)
+			return
+		end
+
+		if obj:IsA('TextLabel') or obj:IsA('TextButton') or obj:IsA('TextBox') then
+			queue(obj:FindFirstAncestorOfClass('ScreenGui'))
+		end
+	end
+
+	local function watch(root)
+		if not alive(root) or watched[root] then
+			return
+		end
+
+		watched[root] = true
+		queuefrom(root)
+		local ok, connection = pcall(function()
+			return root.DescendantAdded:Connect(queuefrom)
+		end)
+
+		if ok and connection then
+			watchers[#watchers + 1] = connection
+		end
+	end
+
+	watch(core)
+
+	if type(gethui) == 'function' then
+		local ok, hui = pcall(gethui)
+		if ok and alive(hui) then
+			watch(hui)
+		end
+	end
+
+	-- One initial discovery handles the case where FiveRose was loaded before
+	-- Tweaker. After this, DescendantAdded drives normal discovery so we do not
+	-- repeatedly walk CoreGui/getinstances/getgc while protected FiveRose is
+	-- already CPU-bound during startup.
+	for _, candidate in ipairs(findguis()) do
+		queue(candidate)
+	end
 
 	repeat
 		api:active()
+		local now = os.clock()
+		local work = {}
 
-		for _, candidate in ipairs(findguis()) do
+		for candidate in pairs(queued) do
+			queued[candidate] = nil
+			work[#work + 1] = candidate
+		end
+
+		for _, candidate in ipairs(work) do
+			if not alive(candidate) then
+				continue
+			end
+
+			local nextinspect = inspect[candidate] or 0
+			if now < nextinspect then
+				queued[candidate] = true
+				continue
+			end
+
+			inspect[candidate] = now + 0.25
+			local isuniversal = universal(candidate)
+			local score = scoregui(candidate)
+
+			if (isuniversal or score >= 500) and not markedgui then
+				markedgui = true
+				mark('fiverose_gui')
+			end
+
 			local nextuni = unitry[candidate] or 0
-
-			if universal(candidate) and os.clock() >= nextuni then
-				unitry[candidate] = os.clock() + 2
+			if isuniversal and now >= nextuni then
+				unitry[candidate] = now + 2
 				local ok, result = pcall(function()
 					local make = api:import('src/core/ui_universal.lua')
 					return make(api, candidate)
 				end)
 
 				if ok and result then
+					stopwatchers()
 					return result
 				end
 
 				unierr = result
+				queued[candidate] = true
 			end
 
-			local found = findlib(candidate)
+			if score >= 500 then
+				local nexttry = retry[candidate] or 0
+				if now >= nexttry then
+					retry[candidate] = now + 0.75
+					local found = findlib(candidate)
 
-			if found then
-				gui = candidate
-				lib = found
-				break
+					if found then
+						gui = candidate
+						lib = found
+						break
+					end
+				end
+
+				-- The ScreenGui can appear a little before the Obsidian library table
+				-- becomes discoverable. Requeue only this candidate instead of doing a
+				-- global registry scan four times per second.
+				queued[candidate] = true
 			end
 		end
 
@@ -399,13 +516,26 @@ return function(api)
 			break
 		end
 
-		task.wait(0.25)
+		-- Rare executor GUIs can live outside CoreGui/gethui. Keep a slow fallback
+		-- for those environments without making it part of the hot startup loop.
+		if now >= nextfallback then
+			nextfallback = now + 10
+			for _, candidate in ipairs(findguis()) do
+				queue(candidate)
+			end
+		end
+
+		task.wait(0.1)
 	until os.clock() - started >= timeout
+
+	stopwatchers()
 
 	api:active()
 
 	if not gui then
-		error('real Fiverose ScreenGui not found within '..timeout..'s')
+		error(timeout == math.huge
+			and 'real Fiverose ScreenGui not found'
+			or 'real Fiverose ScreenGui not found within '..timeout..'s')
 	end
 
 	if not lib then
@@ -413,7 +543,9 @@ return function(api)
 			error('Universal Fiverose attach failed: '..tostring(unierr))
 		end
 
-		error('live Fiverose UI library not found within '..timeout..'s')
+		error(timeout == math.huge
+			and 'live Fiverose UI library not found'
+			or 'live Fiverose UI library not found within '..timeout..'s')
 	end
 
 	api:active()

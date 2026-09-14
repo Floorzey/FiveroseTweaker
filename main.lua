@@ -358,12 +358,42 @@ function boot:load(path)
 	return chunk()
 end
 
-local ok, result = pcall(function()
+local function startfastboot()
+	if boot.fastboot_started then
+		return boot.fastboot
+	end
+
+	boot.fastboot_started = true
+	local fastok, factory = pcall(boot.load, boot, 'src/core/fastboot.lua')
+
+	if fastok and type(factory) == 'function' then
+		local sessionok, session = pcall(factory, boot, env)
+		if sessionok then
+			boot.fastboot = session
+		elseif type(warn) == 'function' then
+			warn('[fiverosetweaker/fastboot] '..tostring(session))
+		end
+	end
+
+	return boot.fastboot
+end
+
+-- Install the tiny preloader synchronously so that when main.lua returns, a
+-- caller can immediately start FiveRose in the next line and still benefit
+-- from the dependency cache. The heavier Tweaker attach path runs separately.
+startfastboot()
+
+local function run()
+	local ok, result = pcall(function()
 	if rawget(env, 'fiverosetweaker_boot_token') ~= token then
 		error('load cancelled')
 	end
 
 	local function execute()
+		if type(boot.fastboot) == 'table' and type(rawget(boot.fastboot, 'mark')) == 'function' then
+			pcall(boot.fastboot.mark, boot.fastboot, 'loader_start')
+		end
+
 		local loader = boot:load('src/loader.lua')
 		boot.locked = true
 
@@ -405,6 +435,10 @@ local ok, result = pcall(function()
 end)
 
 if not ok then
+	if type(boot.fastboot) == 'table' and type(rawget(boot.fastboot, 'stop')) == 'function' then
+		pcall(boot.fastboot.stop, boot.fastboot, 'boot error')
+	end
+
 	if rawget(env, 'fiverosetweaker_boot_token') == token then
 		env.fiverosetweaker_boot_token = nil
 	end
@@ -418,3 +452,10 @@ if type(result) == 'table' and result.state == 'loaded' then
 end
 
 return result
+end
+
+if rawget(env, 'fiverosetweaker_sync') == true then
+	return run()
+end
+
+return task.defer(run)
