@@ -1,5 +1,7 @@
 # FIVEROSE TWEAKER
 
+Notice: Fiverose itself is honestly paid slop so any game you want to load into, you will be met with a long ass fps spike. This issue is from fiverose and not vapetweaker.
+
 FiveroseTweaker adds modules and features from Vape to Fiverose.
 
 **YOU MUST OWN THE REAL FIVEROSE TO USE THIS.**
