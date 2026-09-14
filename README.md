@@ -12,13 +12,13 @@ This project has been rewritten and brought back. Updates may still be irregular
 
 ```lua
 -- Please give Fiverose and FiveroseTweaker a good amount of time to load.
--- It should usually take around 15 seconds on a good executor.
+-- It should usually take around 15-20 seconds on a good executor. (professional optimization)
 
 getgenv().SCRIPT_KEY = "put your fiverose key here"
 
 loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/4d158afc6a06b4850944ecb0c53a62ff1f1159b5bb869a242689fe5b147d22e2/download"))()
 
-task.wait(10)
+task.wait(17) --true professional optimization
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Floorzey/FiveroseTweaker/main/main.lua", true))()
 ```
