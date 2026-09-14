@@ -440,6 +440,164 @@ return function(api)
 	api.tabs = tabs
 	api.toggles = rawget(lib, 'Toggles')
 	api.options = rawget(lib, 'Options')
+
+	-- FiveRose has shipped more than one UI backend/version. Some older slider
+	-- text inputs accept arbitrary text visually even though the backing slider
+	-- still calculates with the previous numeric value. Keep validation here in
+	-- the adapter so every supported UI gets the same numeric behavior.
+	local numericguards = setmetatable({}, {__mode = 'k'})
+
+	local function sliderprecision(item)
+		return math.clamp(math.floor(tonumber(rawget(item, 'Rounding')) or 0), 0, 10)
+	end
+
+	local function rounded(value, decimals)
+		local factor = 10 ^ decimals
+		return math.round(value * factor) / factor
+	end
+
+	local function validnumerictext(text, decimals, allownegative)
+		text = tostring(text or '')
+		if text == '' then return true, nil end
+		if text == '-' then return allownegative, nil end
+		if text == '.' then return decimals > 0, nil end
+		if text == '-.' then return allownegative and decimals > 0, nil end
+		if text:find('[^%d%.%-]') then return false, nil end
+		if not allownegative and text:find('-', 1, true) then return false, nil end
+		if text:sub(2):find('-', 1, true) then return false, nil end
+
+		local firstdot = text:find('.', 1, true)
+		if firstdot then
+			if decimals == 0 or text:find('.', firstdot + 1, true) then return false, nil end
+			if #text - firstdot > decimals then return false, nil end
+		end
+
+		local value = tonumber(text)
+		return value ~= nil, value
+	end
+
+	local function guardtextbox(item, textbox)
+		if not alive(textbox) or not textbox:IsA('TextBox') or numericguards[textbox] then
+			return
+		end
+
+		numericguards[textbox] = true
+		local busy = false
+		local min = tonumber(rawget(item, 'Min')) or -math.huge
+		local max = tonumber(rawget(item, 'Max')) or math.huge
+		local decimals = sliderprecision(item)
+		local function current()
+			return tonumber(rawget(item, 'Value'))
+				or (min ~= -math.huge and min)
+				or 0
+		end
+		local lastvalid = tostring(rounded(math.clamp(current(), min, max), decimals))
+
+		local function write(text)
+			busy = true
+			textbox.Text = tostring(text)
+			busy = false
+		end
+
+		local changed = textbox:GetPropertyChangedSignal('Text'):Connect(function()
+			if busy then return end
+			local text = textbox.Text
+			local valid, value = validnumerictext(text, decimals, min < 0)
+
+			if not valid then
+				write(lastvalid)
+				return
+			end
+
+			-- Empty/sign-only input is allowed while editing so backspace and negative
+			-- values still feel normal. It never becomes the slider's stored value.
+			if value == nil then return end
+
+			value = rounded(math.clamp(value, min, max), decimals)
+			local normalized = tostring(value)
+			if tonumber(text) ~= value then
+				write(normalized)
+			end
+			lastvalid = normalized
+		end)
+
+		local lost = textbox.FocusLost:Connect(function()
+			if busy then return end
+			local value = tonumber(textbox.Text) or tonumber(lastvalid) or current()
+			value = rounded(math.clamp(value, min, max), decimals)
+
+			local set = rawget(item, 'SetValue')
+			if type(set) == 'function' then
+				pcall(set, item, value)
+			end
+
+			lastvalid = tostring(value)
+			write(lastvalid)
+		end)
+
+		api:clean(changed)
+		api:clean(lost)
+	end
+
+	local function guardslider(item)
+		if type(item) ~= 'table' or rawget(item, 'Type') ~= 'Slider' then
+			return item
+		end
+
+		local roots = {}
+		for _, key in ipairs({'Holder', 'Container'}) do
+			local rootitem = rawget(item, key)
+			if alive(rootitem) then
+				roots[#roots + 1] = rootitem
+			end
+		end
+
+		local nativeitem = rawget(item, 'Native')
+		if type(nativeitem) == 'table' then
+			local nativeholder = rawget(nativeitem, 'Holder')
+			if alive(nativeholder) then roots[#roots + 1] = nativeholder end
+			local items = rawget(nativeitem, 'Items')
+			if type(items) == 'table' then
+				for _, value in pairs(items) do
+					if alive(value) then roots[#roots + 1] = value end
+				end
+			end
+		end
+
+		for _, rootitem in ipairs(roots) do
+			if rootitem:IsA('TextBox') then
+				guardtextbox(item, rootitem)
+			end
+			for _, descendant in ipairs(rootitem:GetDescendants()) do
+				if descendant:IsA('TextBox') then
+					guardtextbox(item, descendant)
+				end
+			end
+		end
+
+		return item
+	end
+
+	api.guard_slider = guardslider
+	for _, item in pairs(api.options) do
+		guardslider(item)
+	end
+
+	-- Keep watching the registry at a very low rate so sliders added later by a
+	-- FiveRose update inherit the same validation without another Tweaker patch.
+	api:clean(task.spawn(function()
+		while api.guard_slider == guardslider and rawget(lib, 'Unloaded') ~= true do
+			task.wait(1)
+			for _, item in pairs(api.options) do
+				guardslider(item)
+			end
+		end
+	end))
+
+	api:clean(function()
+		api.guard_slider = nil
+	end)
+
 	api.owned = {}
 	api._owned_prior = {}
 	api._owned_tabs = setmetatable({}, {__mode = 'k'})

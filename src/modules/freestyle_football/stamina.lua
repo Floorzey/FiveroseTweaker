@@ -276,6 +276,10 @@ return function(api)
 		Suffix = 'x'
 	})
 
+	if type(api.guard_slider) == 'function' then
+		api.guard_slider(options[valueid])
+	end
+
 	api:own(toggleid)
 	api:own(valueid)
 	api:addkey(toggles[toggleid], 'fiverose_tweaker_stamina_key', 'Stamina Multiplier', 'None')

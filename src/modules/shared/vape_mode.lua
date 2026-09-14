@@ -30,7 +30,20 @@ return function(api, entry)
 	local box = tab:AddRightGroupbox('Vape Modules')
 	api.vape_settings_box = box
 	local status = box:AddLabel('Status: disabled')
-	box:AddLabel('Vape 4.22 • upstream 4204f308')
+
+	local upstream = 'unknown'
+	do
+		local http = game:GetService('HttpService')
+		local ok, source = pcall(api.source, api, 'src/vape/upstream.json')
+		if ok and type(source) == 'string' then
+			local decoded, data = pcall(http.JSONDecode, http, source)
+			if decoded and type(data) == 'table' and type(data.upstream_commit) == 'string' then
+				upstream = data.upstream_commit:sub(1, 8)
+			end
+		end
+	end
+
+	box:AddLabel('Vape • upstream '..upstream)
 	box:AddToggle(id, {
 		Text = 'Use Vape Modules',
 		Default = false
@@ -89,11 +102,15 @@ return function(api, entry)
 			end
 
 			bridge = current
+			-- Match real Vape's load order exactly: universal first, then the current
+			-- place bundle. Game-specific CreateModule calls replace same-name
+			-- universal modules through vape:Remove(name), just like Vape itself.
 			api:import('src/vape/games/universal.lua')(api)
 
 			if entry.family.vape then
 				api:import(entry.family.vape)(api, entry)
 			end
+
 
 			if token ~= gen or toggle.Value ~= true then
 				current:destroy()

@@ -3,6 +3,7 @@ return function(api, entry)
 	local textservice = game:GetService('TextService')
 	local inputservice = game:GetService('UserInputService')
 	local httpservice = game:GetService('HttpService')
+	local runservice = game:GetService('RunService')
 	local mods = {}
 	local modlist = {}
 	local count = {}
@@ -463,8 +464,15 @@ return function(api, entry)
 	end
 
 	local function restoretabs()
-		for _, name in ipairs(names) do
-			local tab = replacements[name]
+		-- Do not hard-code Vape's category list here. Upstream can add categories at
+		-- any time; every replacement tab we created must be torn down.
+		local created = {}
+		for name, tab in pairs(replacements) do
+			created[#created + 1] = {name = name, tab = tab}
+		end
+
+		for _, data in ipairs(created) do
+			local tab = data.tab
 
 			if tab then
 				if type(api.remove_tab) == 'function' then
@@ -474,7 +482,7 @@ return function(api, entry)
 				end
 			end
 
-			replacements[name] = nil
+			replacements[data.name] = nil
 		end
 
 		local active
@@ -641,7 +649,17 @@ return function(api, entry)
 
 	hidefeatures()
 
-	for _, name in ipairs(names) do
+	local function makecategory(name)
+		name = tostring(name or '')
+		if name == '' then
+			return
+		end
+
+		local current = rawget(cats, name)
+		if current then
+			return current
+		end
+
 		local category = {
 			Name = name,
 			Options = {},
@@ -668,7 +686,12 @@ return function(api, entry)
 			return tab:AddRightGroupbox(title)
 		end
 
-		cats[name] = category
+		rawset(cats, name, category)
+		return category
+	end
+
+	for _, name in ipairs(names) do
+		makecategory(name)
 	end
 
 	local function fake(value)
@@ -1041,6 +1064,7 @@ return function(api, entry)
 
 			local item = api.options[id]
 			local obj = optionbase(module, settings, item, id)
+			if type(api.guard_slider) == 'function' then api.guard_slider(item) end
 			obj.Type = 'Slider'
 			obj.Value = item and item.Value or default
 			obj.Max = tonumber(settings.Max) or 100
@@ -1184,12 +1208,104 @@ return function(api, entry)
 				item = api.options[id]
 			end
 
+			-- Keep the native FiveRose picker, but add a tiny hue strip under the
+			-- row so ColorSlider still reads like Vape instead of a generic swatch.
+			-- This is intentionally host-agnostic and works with both FiveRose UIs.
+			local strip, stripmarker
+			do
+				local root
+				for _, candidate in ipairs({label, item}) do
+					if type(candidate) == 'table' then
+						for _, key in ipairs({'Container', 'Holder'}) do
+							local value = rawget(candidate, key)
+							if typeof(value) == 'Instance' and value:IsA('GuiObject') then
+								root = value
+								break
+							end
+						end
+					end
+					if root then break end
+				end
+
+				if root then
+					strip = Instance.new('TextButton')
+					strip.Name = 'FiveRoseHueStrip'
+					strip.AutoButtonColor = false
+					strip.BackgroundColor3 = Color3.new(1, 1, 1)
+					strip.BorderSizePixel = 0
+					strip.Position = UDim2.new(0, 8, 1, -5)
+					strip.Size = UDim2.new(1, -16, 0, 4)
+					strip.Text = ''
+					strip.ZIndex = root.ZIndex + 2
+					strip.Parent = root
+
+					local points = {}
+					for index = 0, 10 do
+						local hue = index / 10
+						points[#points + 1] = ColorSequenceKeypoint.new(hue, Color3.fromHSV(hue, 1, 1))
+					end
+					local gradient = Instance.new('UIGradient')
+					gradient.Color = ColorSequence.new(points)
+					gradient.Parent = strip
+
+					stripmarker = Instance.new('Frame')
+					stripmarker.Name = 'Marker'
+					stripmarker.AnchorPoint = Vector2.new(0.5, 0.5)
+					stripmarker.BackgroundColor3 = Color3.new(1, 1, 1)
+					stripmarker.BorderSizePixel = 0
+					stripmarker.Position = UDim2.fromScale(math.clamp(select(1, colorvalue:ToHSV()), 0, 1), 0.5)
+					stripmarker.Size = UDim2.fromOffset(2, 6)
+					stripmarker.ZIndex = strip.ZIndex + 1
+					stripmarker.Parent = strip
+				end
+			end
+
+			-- Vape color sliders are more than a static color picker: they can opt
+			-- into the shared rainbow animation. Expose that state natively in both
+			-- FiveRose UI backends rather than silently dropping it.
+			local rainbowid = newid(module.Category, module.Name, name, 'rainbow')
+			box:AddToggle(rainbowid, {
+				Text = name..' Rainbow',
+				Default = false,
+				Tooltip = 'Animate this color through the rainbow',
+				Visible = settings.Visible == nil or settings.Visible
+			})
+			local rainbowitem = api.toggles[rainbowid]
+			if rainbowitem then
+				module._items[#module._items + 1] = rainbowitem
+			end
+
 			local obj = optionbase(module, settings, item or label, id)
-			obj.Object = proxy({label, item}, settings.Visible)
+			obj.Object = proxy({label, item, rainbowitem}, settings.Visible)
 			obj.Type = 'ColorSlider'
 			obj.Color = colorvalue
 			obj.Hue, obj.Sat, obj.Value = colorvalue:ToHSV()
 			obj.Opacity = tonumber(settings.DefaultOpacity) or 1
+			obj.Rainbow = false
+
+			local function rainbowstate(value)
+				value = value == true
+				if obj.Rainbow == value then return end
+				obj.Rainbow = value
+				local index = table.find(vape.RainbowSliders, obj)
+				if value then
+					if not index then vape.RainbowSliders[#vape.RainbowSliders + 1] = obj end
+				elseif index then
+					table.remove(vape.RainbowSliders, index)
+				end
+			end
+
+			function obj:SetRainbow(value)
+				value = value == true
+				rainbowstate(value)
+				if rainbowitem and rainbowitem.Value ~= value and type(rawget(rainbowitem, 'SetValue')) == 'function' then
+					rainbowitem:SetValue(value)
+				end
+			end
+
+			function obj:Toggle()
+				self:SetRainbow(not self.Rainbow)
+			end
 
 			function obj:SetValue(hue, sat, value, opacity)
 				if typeof(hue) == 'Color3' then
@@ -1204,6 +1320,11 @@ return function(api, entry)
 
 				self.Opacity = tonumber(opacity) or self.Opacity
 
+				if stripmarker and stripmarker.Parent then
+					stripmarker.Position = UDim2.fromScale(math.clamp(self.Hue, 0, 1), 0.5)
+					stripmarker.BackgroundColor3 = self.Color
+				end
+
 				if item and type(rawget(item, 'SetValueRGB')) == 'function' then
 					item:SetValueRGB(self.Color, 1 - self.Opacity)
 				else
@@ -1216,9 +1337,70 @@ return function(api, entry)
 					obj.Color = item.Value
 					obj.Hue, obj.Sat, obj.Value = item.Value:ToHSV()
 					obj.Opacity = 1 - (tonumber(item.Transparency) or 0)
+					if stripmarker and stripmarker.Parent then
+						stripmarker.Position = UDim2.fromScale(math.clamp(obj.Hue, 0, 1), 0.5)
+						stripmarker.BackgroundColor3 = obj.Color
+					end
 					safe(module.Name..'/'..name, settings.Function, obj.Hue, obj.Sat, obj.Value, obj.Opacity)
 				end)
 			end
+
+			-- Vape's hue bar is directly draggable. Keep the native FiveRose color
+			-- picker for full HSV/opacity editing, but make this gradient behave like
+			-- the original slider instead of being decorative. Global input listeners
+			-- exist only for the duration of an active drag.
+			local stripconnection, stripmove, striprelease
+			local function stopstripdrag()
+				if stripmove then pcall(stripmove.Disconnect, stripmove); stripmove = nil end
+				if striprelease then pcall(striprelease.Disconnect, striprelease); striprelease = nil end
+			end
+
+			local function setstripposition(position)
+				if not strip or not strip.Parent or strip.AbsoluteSize.X <= 0 then return end
+				local hue = math.clamp((position.X - strip.AbsolutePosition.X) / strip.AbsoluteSize.X, 0, 1)
+				obj:SetRainbow(false)
+				obj:SetValue(hue, nil, nil, nil)
+			end
+
+			if strip then
+				stripconnection = strip.InputBegan:Connect(function(input)
+					if input.UserInputType ~= Enum.UserInputType.MouseButton1
+						and input.UserInputType ~= Enum.UserInputType.Touch then return end
+
+					stopstripdrag()
+					setstripposition(input.Position)
+					stripmove = inputservice.InputChanged:Connect(function(move)
+						if move.UserInputType == Enum.UserInputType.MouseMovement
+							or move.UserInputType == Enum.UserInputType.Touch then
+							setstripposition(move.Position)
+						end
+					end)
+					striprelease = input.Changed:Connect(function()
+						if input.UserInputState == Enum.UserInputState.End then
+							stopstripdrag()
+						end
+					end)
+				end)
+			end
+
+			if rainbowitem then
+				rainbowitem:OnChanged(function()
+					rainbowstate(rainbowitem.Value == true)
+				end)
+			end
+
+			local olddestroy = obj.Destroy
+			function obj:Destroy()
+				rainbowstate(false)
+				stopstripdrag()
+				if stripconnection then pcall(stripconnection.Disconnect, stripconnection); stripconnection = nil end
+				if strip and strip.Parent then pcall(strip.Destroy, strip) end
+				if label and type(label) == 'table' and type(rawget(label, 'Destroy')) == 'function' then
+					pcall(label.Destroy, label)
+				end
+				return olddestroy(self)
+			end
+
 			return obj
 		end
 
@@ -1320,6 +1502,10 @@ return function(api, entry)
 
 			local minitem = api.options[minid]
 			local maxitem = api.options[maxid]
+			if type(api.guard_slider) == 'function' then
+				api.guard_slider(minitem)
+				api.guard_slider(maxitem)
+			end
 			local obj = optionbase(module, settings, minitem, id)
 			module._items[#module._items + 1] = maxitem
 			obj.Type = 'TwoSlider'
@@ -1543,10 +1729,13 @@ return function(api, entry)
 	local function module(category, settings, isoverlay)
 		settings = settings or {}
 		local name = tostring(settings.Name or 'Module')
+		local islegit = category == vape.Legit
 
-		if mods[name] then
-			vape:Remove(name)
-		end
+		-- This is intentionally unconditional. Vape's real Module.lua starts with
+		-- `vape:Remove(props.Name)`, which is what makes a game-specific module
+		-- replace a universal module with the same name (for example Prison Life's
+		-- SilentAim) even when the game's base.lua does not explicitly remove it.
+		vape:Remove(name)
 
 		local box = category:box(name)
 
@@ -1575,6 +1764,11 @@ return function(api, entry)
 		local obj = {
 			Name = name,
 			Category = category.Name,
+			Type = islegit and 'LegitModule' or 'Module',
+			Legit = islegit or nil,
+			Index = #modlist,
+			Visible = settings.Visible == nil or settings.Visible == true,
+			ExtraText = settings.ExtraText,
 			Enabled = false,
 			Options = {},
 			Connections = {},
@@ -1607,6 +1801,14 @@ return function(api, entry)
 			self.Bind = type(value) == 'table' and table.clone(value) or {}
 		end
 
+		function obj:SetVisible(value)
+			self.Visible = value == true
+			if self.Object then
+				self.Object.Visible = self.Visible
+			end
+			return self.Visible
+		end
+
 		function obj:GetExtraText()
 			if type(settings.ExtraText) ~= 'function' then
 				return ''
@@ -1628,6 +1830,7 @@ return function(api, entry)
 			end
 
 			self._dead = true
+			if self.Object then self.Object.Visible = false end
 			if self._bindConnection then pcall(drop, self._bindConnection); self._bindConnection = nil end
 			if self.Bind and type(rawget(self.Bind, 'Destroy')) == 'function' then pcall(self.Bind.Destroy, self.Bind) end
 
@@ -1657,8 +1860,13 @@ return function(api, entry)
 				pcall(box.Destroy, box)
 			end
 
-			mods[self.Name] = nil
-			category.Modules[self.Name] = nil
+			if mods[self.Name] == self then
+				mods[self.Name] = nil
+			end
+
+			if category.Modules[self.Name] == self then
+				category.Modules[self.Name] = nil
+			end
 
 			if vape.Legit.Modules[self.Name] == self then
 				vape.Legit.Modules[self.Name] = nil
@@ -1699,6 +1907,10 @@ return function(api, entry)
 				obj:Drop()
 			end
 
+			if type(vape.UpdateTextGUI) == 'function' then
+				pcall(vape.UpdateTextGUI, vape)
+			end
+
 			if not obj._dead and not safe(name, settings.Function, value) and value then
 				obj.Enabled = false
 				holder.Visible = false
@@ -1714,16 +1926,21 @@ return function(api, entry)
 			toggle:OnChanged(changed)
 		end
 
-		mods[name] = obj
-		modlist[#modlist + 1] = obj
-		category.Modules[name] = obj
-
-		if category == vape.Legit then
+		-- Match Vape's two module registries. Normal modules live in vape.Modules;
+		-- legit modules live in vape.Legit.Modules. Keeping these separate matters
+		-- because vape:Remove(name) resolves normal -> legit -> category in that order.
+		if islegit then
 			vape.Legit.Modules[name] = obj
+		else
+			mods[name] = obj
+			category.Modules[name] = obj
 		end
 
+		modlist[#modlist + 1] = obj
+
 		hold(function()
-			if mods[name] == obj then
+			local registered = islegit and vape.Legit.Modules[name] or mods[name]
+			if registered == obj then
 				obj:Destroy()
 			end
 		end)
@@ -1735,21 +1952,49 @@ return function(api, entry)
 		__newindex = function(components, index, callback)
 			rawset(components, index, callback)
 			if type(callback) ~= 'function' then return end
-			for _, current in pairs(mods) do
-				current['Create'..index] = function(self, values)
-					return callback(values or {}, self.Children, self)
+
+			-- Vape components can be registered by a game's base.lua before or after
+			-- modules are created. Patch both module registries so future upstream
+			-- components do not depend on load timing.
+			for _, registry in ipairs({mods, vape.Legit.Modules}) do
+				for _, current in pairs(registry) do
+					current['Create'..index] = function(self, values)
+						return callback(values or {}, self.Children, self)
+					end
 				end
 			end
 		end
 	})
 
-	for _, category in pairs(cats) do
-		if type(category) == 'table' and type(rawget(category, 'box')) == 'function' then
+	local function enablecategory(category)
+		if type(category) == 'table'
+			and type(rawget(category, 'box')) == 'function'
+			and type(rawget(category, 'CreateModule')) ~= 'function' then
+
 			function category:CreateModule(settings)
 				return module(self, settings, false)
 			end
 		end
+
+		return category
 	end
+
+	for _, category in pairs(cats) do
+		enablecategory(category)
+	end
+
+	-- New upstream categories should not require an adapter update. If Vape adds a
+	-- category in a future source update, materialize a matching FiveRose tab on
+	-- first access and give it the same CreateModule contract.
+	setmetatable(cats, {
+		__index = function(_, name)
+			if type(name) ~= 'string' or name == '' then
+				return nil
+			end
+
+			return enablecategory(makecategory(name))
+		end
+	})
 
 	function vape:CreateOverlay(settings)
 		return module(cats.Render, settings, true)
@@ -1763,13 +2008,113 @@ return function(api, entry)
 		api:notify(title, text, time, kind)
 	end
 
-	function vape:Remove(name)
-		local item = self.Modules[name] or self.Legit.Modules[name]
+	local function removeinstance(value)
+		if typeof(value) == 'Instance' then
+			pcall(value.Destroy, value)
+			return
+		end
 
-		if item and type(item.Destroy) == 'function' then
-			item:Destroy()
+		if type(value) == 'table' then
+			local object = rawget(value, 'Object')
+			if typeof(object) == 'Instance' then
+				pcall(object.Destroy, object)
+			end
 		end
 	end
+
+	local function hidebox(box)
+		if type(box) ~= 'table' then
+			return
+		end
+
+		local hide = rawget(box, 'Hide')
+		if type(hide) == 'function' then
+			pcall(hide, box)
+			return
+		end
+
+		local set = rawget(box, 'SetVisible')
+		if type(set) == 'function' then
+			pcall(set, box, false)
+		end
+	end
+
+	function vape:Remove(name)
+		-- Match Vape's actual container resolution: normal module, legit module,
+		-- then category. Explicit upstream vape:Remove(...) calls therefore keep
+		-- their meaning without a FiveroseTweaker-maintained removal list.
+		local container = rawget(self.Modules, name) and self.Modules
+			or (self.Legit and rawget(self.Legit.Modules or {}, name)) and self.Legit.Modules
+			or self.Categories
+		local item = container and rawget(container, name)
+
+		if not item then
+			return false
+		end
+
+		local ismodule = type(item) == 'table' and rawget(item, 'Type') == 'Module'
+		local categoryname = type(item) == 'table' and rawget(item, 'Category')
+		local category = categoryname and rawget(self.Categories, categoryname)
+		local box = type(item) == 'table' and rawget(item, 'Box')
+		local children = type(item) == 'table' and rawget(item, 'Children')
+		local toggleobject = type(item) == 'table' and rawget(item, 'ToggleObject')
+		local object = type(item) == 'table' and rawget(item, 'Object')
+		local button = type(item) == 'table' and rawget(item, 'Button')
+
+		-- Obsidian groupboxes intentionally do not expose Destroy(), so hide the
+		-- old module container before tearing the wrapper down. This is the host-UI
+		-- equivalent of Vape destroying component.Object and prevents duplicate
+		-- universal/game-specific rows from surviving a replacement.
+		hidebox(box)
+
+		local destroy = type(item) == 'table' and rawget(item, 'Destroy')
+		if type(destroy) == 'function' then
+			pcall(destroy, item)
+		end
+
+		-- Vape additionally destroys Object/Children/Toggle/Button after calling
+		-- component:Destroy(). Keep that second cleanup pass: it prevents stale
+		-- FiveRose groupboxes from surviving a universal -> game replacement even
+		-- if a wrapper's Destroy method changes or partially fails.
+		removeinstance(object)
+		removeinstance(children)
+		removeinstance(toggleobject)
+		removeinstance(button)
+
+		if type(box) == 'table' and type(rawget(box, 'Destroy')) == 'function' then
+			pcall(box.Destroy, box)
+		end
+
+		if container then
+			rawset(container, name, nil)
+		end
+
+		-- Our adapter stores a few extra ownership references that real Vape does
+		-- not. Clear every registry explicitly before invalidating the old object.
+		if rawget(self.Modules, name) == item then
+			rawset(self.Modules, name, nil)
+		end
+
+		if self.Legit and rawget(self.Legit.Modules or {}, name) == item then
+			rawset(self.Legit.Modules, name, nil)
+		end
+
+		if category and type(rawget(category, 'Modules')) == 'table'
+			and rawget(category.Modules, name) == item then
+			rawset(category.Modules, name, nil)
+		end
+
+		-- Real Vape's loopClean recursively invalidates the removed component. A
+		-- shallow clear is deliberate here: our wrapper points at shared FiveRose
+		-- objects, so recursively clearing them would corrupt the host UI. Locals
+		-- that still reference the removed module nevertheless see a dead table.
+		if ismodule and type(item) == 'table' then
+			table.clear(item)
+		end
+
+		return true
+	end
+
 
 	function vape:Save()
 		if type(api.save) == 'function' then
@@ -1798,14 +2143,325 @@ return function(api, entry)
 		end
 	end
 
-	function vape:UpdateTextGUI() end
+	-- Shared rainbow clock used by ported ColorSlider controls and the
+	-- FiveRose-native text GUI below. This mirrors Vape's shared rainbow-state
+	-- model without depending on Vape's own ClickGUI being present.
+	vape.RainbowHue = 0
+	local rainbowclock = 0
+	local rainbowlast = 0
+
+	hold(runservice.RenderStepped:Connect(function(delta)
+		local speed = math.max(0.05, tonumber(vape.RainbowSpeed.Value) or 1)
+		rainbowclock = (rainbowclock + delta * 0.12 * speed) % 1
+		vape.RainbowHue = rainbowclock
+
+		local rate = math.clamp(tonumber(vape.RainbowUpdateSpeed.Value) or 60, 1, 240)
+		local now = os.clock()
+		if now - rainbowlast < 1 / rate then return end
+		rainbowlast = now
+
+		for index = #vape.RainbowSliders, 1, -1 do
+			local slider = vape.RainbowSliders[index]
+			if type(slider) ~= 'table' or slider._dead or slider.Rainbow ~= true then
+				table.remove(vape.RainbowSliders, index)
+			elseif type(rawget(slider, 'SetValue')) == 'function' then
+				pcall(slider.SetValue, slider, rainbowclock, nil, nil, nil)
+			end
+		end
+	end))
+
+	local textgui = {
+		Enabled = false,
+		Rainbow = true,
+		Background = true,
+		Watermark = true,
+		BackgroundOpacity = 78,
+		FontSize = 14,
+		Sort = 'Length',
+		Rows = {},
+		LastUpdate = 0
+	}
+
+	local textroot = Instance.new('Frame')
+	textroot.Name = 'FiveRoseTextGUI'
+	textroot.AnchorPoint = Vector2.new(1, 0)
+	textroot.Position = UDim2.new(1, -14, 0, 54)
+	textroot.Size = UDim2.fromOffset(360, 600)
+	textroot.BackgroundTransparency = 1
+	textroot.BorderSizePixel = 0
+	textroot.Visible = false
+	textroot.Parent = overlay
+	hold(textroot)
+
+	local textlayout = Instance.new('UIListLayout')
+	textlayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+	textlayout.SortOrder = Enum.SortOrder.LayoutOrder
+	textlayout.Padding = UDim.new(0, 3)
+	textlayout.Parent = textroot
+
+	local textheader = Instance.new('TextButton')
+	textheader.Name = 'Watermark'
+	textheader.AutoButtonColor = false
+	textheader.AutomaticSize = Enum.AutomaticSize.X
+	textheader.Size = UDim2.fromOffset(0, 26)
+	textheader.BackgroundColor3 = Color3.fromRGB(13, 13, 15)
+	textheader.BorderSizePixel = 0
+	textheader.LayoutOrder = -1000
+	textheader.FontFace = vape.Libraries.uipallet.FontSemiBold
+	textheader.Text = '  FiveroseTweaker  '
+	textheader.TextColor3 = Color3.new(1, 1, 1)
+	textheader.TextSize = 14
+	textheader.TextXAlignment = Enum.TextXAlignment.Right
+	textheader.Parent = textroot
+
+	local headercorner = Instance.new('UICorner')
+	headercorner.CornerRadius = UDim.new(0, 4)
+	headercorner.Parent = textheader
+
+	local headeraccent = Instance.new('Frame')
+	headeraccent.AnchorPoint = Vector2.new(1, 0)
+	headeraccent.Position = UDim2.new(1, 0, 0, 0)
+	headeraccent.Size = UDim2.new(0, 3, 1, 0)
+	headeraccent.BorderSizePixel = 0
+	headeraccent.Parent = textheader
+
+	-- The watermark is also the drag handle. Global input listeners are created
+	-- only during an active drag, so this does not undo the shared-input-dispatch
+	-- performance work used by the rest of the adapter.
+	do
+		local moveconnection, releaseconnection
+		local function stopdrag()
+			if moveconnection then pcall(moveconnection.Disconnect, moveconnection); moveconnection = nil end
+			if releaseconnection then pcall(releaseconnection.Disconnect, releaseconnection); releaseconnection = nil end
+		end
+
+		hold(function() stopdrag() end)
+		hold(textheader.InputBegan:Connect(function(input)
+			if input.UserInputType ~= Enum.UserInputType.MouseButton1
+				and input.UserInputType ~= Enum.UserInputType.Touch then return end
+
+			stopdrag()
+			local dragstart = Vector2.new(input.Position.X, input.Position.Y)
+			local startposition = textroot.Position
+
+			moveconnection = inputservice.InputChanged:Connect(function(move)
+				if move.UserInputType ~= Enum.UserInputType.MouseMovement
+					and move.UserInputType ~= Enum.UserInputType.Touch then return end
+				local delta = Vector2.new(move.Position.X, move.Position.Y) - dragstart
+				textroot.Position = UDim2.new(
+					startposition.X.Scale, startposition.X.Offset + delta.X,
+					startposition.Y.Scale, startposition.Y.Offset + delta.Y
+				)
+			end)
+
+			releaseconnection = input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					stopdrag()
+				end
+			end)
+		end))
+	end
+
+	local function textguiaccent(index)
+		if textgui.Rainbow then
+			return Color3.fromHSV((vape.RainbowHue - ((index - 1) * 0.035)) % 1, 0.82, 1)
+		end
+
+		local scheme = api.lib and rawget(api.lib, 'Scheme')
+		if type(scheme) == 'table' and typeof(rawget(scheme, 'AccentColor')) == 'Color3' then
+			return scheme.AccentColor
+		end
+
+		return Color3.fromHSV(vape.GUIColor.Hue or 0.46, vape.GUIColor.Sat or 0.96, vape.GUIColor.Value or 0.52)
+	end
+
+	local function cleartextrows(from)
+		from = tonumber(from) or 1
+		for index = #textgui.Rows, from, -1 do
+			local row = textgui.Rows[index]
+			if type(row) == 'table' and typeof(row.Frame) == 'Instance' then
+				pcall(row.Frame.Destroy, row.Frame)
+			elseif typeof(row) == 'Instance' then
+				pcall(row.Destroy, row)
+			end
+			textgui.Rows[index] = nil
+		end
+	end
+
+	local function maketextrow(index)
+		local frame = Instance.new('Frame')
+		frame.AutomaticSize = Enum.AutomaticSize.X
+		frame.Size = UDim2.fromOffset(0, textgui.FontSize + 8)
+		frame.BackgroundColor3 = Color3.fromRGB(13, 13, 15)
+		frame.BorderSizePixel = 0
+		frame.LayoutOrder = index
+		frame.Parent = textroot
+
+		local corner = Instance.new('UICorner')
+		corner.CornerRadius = UDim.new(0, 4)
+		corner.Parent = frame
+
+		local accent = Instance.new('Frame')
+		accent.AnchorPoint = Vector2.new(1, 0)
+		accent.Position = UDim2.new(1, 0, 0, 0)
+		accent.Size = UDim2.new(0, 2, 1, 0)
+		accent.BorderSizePixel = 0
+		accent.Parent = frame
+
+		local label = Instance.new('TextLabel')
+		label.AutomaticSize = Enum.AutomaticSize.X
+		label.Size = UDim2.new(0, 0, 1, 0)
+		label.BackgroundTransparency = 1
+		label.FontFace = vape.Libraries.uipallet.Font
+		label.RichText = true
+		label.TextXAlignment = Enum.TextXAlignment.Right
+		label.Parent = frame
+
+		local row = {Frame = frame, Accent = accent, Label = label}
+		textgui.Rows[index] = row
+		return row
+	end
+
+	function vape:UpdateTextGUI()
+		textroot.Visible = textgui.Enabled == true
+		textheader.Visible = textgui.Watermark == true
+		local backgroundTransparency = textgui.Background
+			and (1 - math.clamp(textgui.BackgroundOpacity, 0, 100) / 100) or 1
+		textheader.BackgroundTransparency = backgroundTransparency
+		headeraccent.BackgroundColor3 = textguiaccent(1)
+		if not textgui.Enabled then
+			cleartextrows()
+			return
+		end
+
+		local enabled = {}
+		for _, registry in ipairs({self.Modules, self.Legit and self.Legit.Modules or {}}) do
+			for name, current in pairs(registry) do
+				if type(current) == 'table' and current.Enabled and name ~= 'FiveRose Text GUI' then
+					local extra = type(rawget(current, 'GetExtraText')) == 'function' and current:GetExtraText() or ''
+					local display = tostring(name)
+					if extra ~= '' then display ..= '  <font transparency=\"0.28\">'..extra..'</font>' end
+					enabled[#enabled + 1] = {Name = name, Text = display}
+				end
+			end
+		end
+
+		table.sort(enabled, function(a, b)
+			if textgui.Sort == 'Alphabetical' then
+				return a.Name:lower() < b.Name:lower()
+			end
+
+			local asize = getsize(a.Name, textgui.FontSize, vape.Libraries.uipallet.Font).X
+			local bsize = getsize(b.Name, textgui.FontSize, vape.Libraries.uipallet.Font).X
+			if asize == bsize then return a.Name < b.Name end
+			return asize > bsize
+		end)
+
+		for index, data in ipairs(enabled) do
+			local row = textgui.Rows[index]
+			if type(row) ~= 'table' or typeof(row.Frame) ~= 'Instance' then
+				row = maketextrow(index)
+			end
+
+			local accent = textguiaccent(index)
+			row.Frame.Name = slug(data.Name)
+			row.Frame.LayoutOrder = index
+			row.Frame.Size = UDim2.fromOffset(0, textgui.FontSize + 8)
+			row.Frame.BackgroundTransparency = backgroundTransparency
+			row.Accent.BackgroundColor3 = accent
+			row.Label.Text = '  '..data.Text..'  '
+			row.Label.TextColor3 = accent
+			row.Label.TextSize = textgui.FontSize
+		end
+
+		if #textgui.Rows > #enabled then
+			cleartextrows(#enabled + 1)
+		end
+	end
+
 	function vape:BlurCheck() end
 	function vape:Color(value)
-		return value, self.GUIColor.Sat, self.GUIColor.Value
+		return (self.RainbowHue - (tonumber(value) or 0)) % 1
 	end
 	function vape:TextColor()
 		return Color3.new(1, 1, 1)
 	end
+
+	local textguimodule = module(cats.Render, {
+		Name = 'FiveRose Text GUI',
+		Tooltip = 'Compact enabled-module list built for the FiveRose UI',
+		Function = function(enabled)
+			textgui.Enabled = enabled == true
+			vape:UpdateTextGUI()
+		end
+	}, true)
+
+	if textguimodule then
+		textguimodule:CreateDropdown({
+			Name = 'Sort',
+			List = {'Length', 'Alphabetical'},
+			Default = 'Length',
+			Function = function(value)
+				textgui.Sort = value == 'Alphabetical' and 'Alphabetical' or 'Length'
+				vape:UpdateTextGUI()
+			end
+		})
+		textguimodule:CreateToggle({
+			Name = 'Rainbow',
+			Default = true,
+			Function = function(value)
+				textgui.Rainbow = value == true
+				vape:UpdateTextGUI()
+			end
+		})
+		textguimodule:CreateToggle({
+			Name = 'Background',
+			Default = true,
+			Function = function(value)
+				textgui.Background = value == true
+				vape:UpdateTextGUI()
+			end
+		})
+		textguimodule:CreateToggle({
+			Name = 'Watermark',
+			Default = true,
+			Function = function(value)
+				textgui.Watermark = value == true
+				vape:UpdateTextGUI()
+			end
+		})
+		textguimodule:CreateSlider({
+			Name = 'Background Opacity',
+			Min = 0,
+			Max = 100,
+			Default = 78,
+			Decimal = 1,
+			Suffix = '%',
+			Function = function(value)
+				textgui.BackgroundOpacity = math.clamp(tonumber(value) or 78, 0, 100)
+				vape:UpdateTextGUI()
+			end
+		})
+		textguimodule:CreateSlider({
+			Name = 'Text Size',
+			Min = 10,
+			Max = 22,
+			Default = 14,
+			Decimal = 1,
+			Function = function(value)
+				textgui.FontSize = math.clamp(tonumber(value) or 14, 10, 22)
+				vape:UpdateTextGUI()
+			end
+		})
+	end
+
+	hold(runservice.Heartbeat:Connect(function()
+		if not textgui.Enabled then return end
+		local now = os.clock()
+		if now - textgui.LastUpdate < 0.12 then return end
+		textgui.LastUpdate = now
+		vape:UpdateTextGUI()
+	end))
 
 	api.vape_errors = {}
 	function api:vape_module_error(source, err)
@@ -1818,7 +2474,22 @@ return function(api, entry)
 		return item
 	end
 
-	local upstreamCommit = '4204f30808488572ea36729e56b1032eaae66de0'
+	local upstreamCommit = 'unknown'
+	do
+		-- build_vape.py owns upstream.json. Reading the commit from the generated
+		-- manifest keeps this bridge valid when the Vape snapshot is regenerated.
+		local ok, source = pcall(api.source, api, 'src/vape/upstream.json')
+		if ok and type(source) == 'string' then
+			local decoded, data = pcall(httpservice.JSONDecode, httpservice, source)
+			if decoded and type(data) == 'table'
+				and type(data.upstream_commit) == 'string'
+				and data.upstream_commit ~= '' then
+
+				upstreamCommit = data.upstream_commit
+			end
+		end
+	end
+
 	function api:vape_virtual_read(path)
 		path = tostring(path or ''):gsub('\\', '/')
 		if path == 'newvape/profiles/commit.txt' then

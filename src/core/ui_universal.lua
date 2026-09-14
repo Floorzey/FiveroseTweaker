@@ -994,6 +994,148 @@ return function(api, root)
 		end
 	end
 
+	local numericguards = setmetatable({}, {__mode = 'k'})
+
+	local function validnumerictext(text, decimals, allownegative)
+		text = tostring(text or '')
+		if text == '' then return true, nil end
+		if text == '-' then return allownegative, nil end
+		if text == '.' then return decimals > 0, nil end
+		if text == '-.' then return allownegative and decimals > 0, nil end
+		if text:find('[^%d%.%-]') then return false, nil end
+		if not allownegative and text:find('-', 1, true) then return false, nil end
+		if text:sub(2):find('-', 1, true) then return false, nil end
+
+		local firstdot = text:find('.', 1, true)
+		if firstdot then
+			if decimals == 0 or text:find('.', firstdot + 1, true) then return false, nil end
+			if #text - firstdot > decimals then return false, nil end
+		end
+
+		local value = tonumber(text)
+		return value ~= nil, value
+	end
+
+	local function guardslider(item)
+		if type(item) ~= 'table' or rawget(item, 'Type') ~= 'Slider' then
+			return item
+		end
+
+		local min = tonumber(rawget(item, 'Min')) or -math.huge
+		local max = tonumber(rawget(item, 'Max')) or math.huge
+		local decimals = math.clamp(math.floor(tonumber(rawget(item, 'Rounding')) or 0), 0, 10)
+		local factor = 10 ^ decimals
+		local function round(value)
+			return math.round(value * factor) / factor
+		end
+		local roots = {}
+		local container = rawget(item, 'Container')
+		if alive(container) then roots[#roots + 1] = container end
+		local nativeitem = rawget(item, 'Native')
+		if type(nativeitem) == 'table' then
+			local items = rawget(nativeitem, 'Items')
+			if type(items) == 'table' then
+				for _, value in pairs(items) do
+					if alive(value) then roots[#roots + 1] = value end
+				end
+			end
+		end
+
+		local function attach(box)
+			if not alive(box) or not box:IsA('TextBox') or numericguards[box] then return end
+			numericguards[box] = true
+			local busy = false
+			local lastvalid = tostring(round(math.clamp(tonumber(rawget(item, 'Value')) or (min ~= -math.huge and min) or 0, min, max)))
+
+			local function write(text)
+				busy = true
+				box.Text = tostring(text)
+				busy = false
+			end
+
+			addlocal(item, box:GetPropertyChangedSignal('Text'), function()
+				if busy then return end
+				local valid, value = validnumerictext(box.Text, decimals, min < 0)
+				if not valid then
+					write(lastvalid)
+					return
+				end
+				if value == nil then return end
+
+				value = round(math.clamp(value, min, max))
+				local normalized = tostring(value)
+				if tonumber(box.Text) ~= value then write(normalized) end
+				lastvalid = normalized
+			end)
+
+			addlocal(item, box.FocusLost, function()
+				if busy then return end
+				local value = tonumber(box.Text) or tonumber(lastvalid) or tonumber(rawget(item, 'Value')) or (min ~= -math.huge and min) or 0
+				value = round(math.clamp(value, min, max))
+				local set = rawget(item, 'SetValue')
+				if type(set) == 'function' then pcall(set, item, value) end
+				lastvalid = tostring(value)
+				write(lastvalid)
+			end)
+		end
+
+		for _, rootitem in ipairs(roots) do
+			if rootitem:IsA('TextBox') then attach(rootitem) end
+			for _, descendant in ipairs(rootitem:GetDescendants()) do
+				if descendant:IsA('TextBox') then attach(descendant) end
+			end
+		end
+		return item
+	end
+
+	api.guard_slider = guardslider
+	api:clean(task.spawn(function()
+		while api.guard_slider == guardslider and not state.dead do
+			task.wait(1)
+			for _, item in pairs(options) do
+				guardslider(item)
+			end
+		end
+	end))
+
+	-- Also harden sliders that FiveRose itself created before Tweaker attached.
+	-- The legacy/universal UI does not expose those through api.options, but its
+	-- slider objects consistently carry Min/Max/Value plus Set().
+	for _, nativeitem in ipairs(native) do
+		local min = tonumber(type(nativeitem) == 'table' and rawget(nativeitem, 'Min'))
+		local max = tonumber(type(nativeitem) == 'table' and rawget(nativeitem, 'Max'))
+		local set = type(nativeitem) == 'table' and rawget(nativeitem, 'Set')
+
+		if min and max and type(set) == 'function' then
+			local decimal = tonumber(rawget(nativeitem, 'Decimal')) or 1
+			local rounding = decimal > 0 and decimal < 1
+				and math.max(0, math.floor(-math.log10(decimal) + 0.5))
+				or 0
+			local fake = {
+				Type = 'Slider',
+				Native = nativeitem,
+				Container = rootof(nativeitem, {'Slider'}),
+				Min = min,
+				Max = max,
+				Value = tonumber(rawget(nativeitem, 'Value')) or min,
+				Rounding = rounding,
+				_connections = {},
+				_connectionset = {}
+			}
+
+			function fake:SetValue(value)
+				local ok = pcall(set, value)
+				if not ok then pcall(set, nativeitem, value) end
+				self.Value = tonumber(rawget(nativeitem, 'Value')) or tonumber(value) or self.Value
+			end
+
+			guardslider(fake)
+			for _, con in ipairs(fake._connections) do
+				state.inputcons[#state.inputcons + 1] = con
+			end
+		end
+	end
+
 	local function base(kind, id, obj, owned)
 		local item = {
 			Type = kind,
@@ -1528,6 +1670,7 @@ return function(api, root)
 			item.Value = rawget(obj, 'Value')
 			item.Min = rawget(obj, 'Min')
 			item.Max = rawget(obj, 'Max')
+			item.Rounding = math.max(0, math.floor(tonumber(info.Rounding) or 0))
 			item._flag = id
 
 			function item:SetValue(value)
@@ -1537,6 +1680,7 @@ return function(api, root)
 
 			options[id] = item
 			item:SetVisible(info.Visible ~= false)
+			guardslider(item)
 			return add(item)
 		end
 
