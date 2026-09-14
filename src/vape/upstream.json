@@ -1,0 +1,1997 @@
+{
+  "bundler_contract": "7GrandDadPGN/VapeBundler/helpers/processGame.js",
+  "bundles": {
+    "arena": {
+      "base_sha256": "1a2f7e80ee4af3b7490a30a6ea4fc7864a93f5de33032c238472ba667765cc2b",
+      "module_count": 15,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "AutoClicker",
+          "path": "1.8arena/77790193039862 - game/Combat/AutoClicker.lua",
+          "sha256": "f2d90f0160e5d2c1457d12dead459995e4f57d5a52ff058dc44f3477f8cd562c"
+        },
+        {
+          "category": "Combat",
+          "name": "Reach",
+          "path": "1.8arena/77790193039862 - game/Combat/Reach.lua",
+          "sha256": "991c0f8dff84f80d6ef39d95d5eb15d00b79563b1105b439624a03ace0d11e6d"
+        },
+        {
+          "category": "Combat",
+          "name": "Sprint",
+          "path": "1.8arena/77790193039862 - game/Combat/Sprint.lua",
+          "sha256": "96064ff85afbaef9bf6527ce434792765cbac1fc6c93ac628af343f068da563f"
+        },
+        {
+          "category": "Combat",
+          "name": "Velocity",
+          "path": "1.8arena/77790193039862 - game/Combat/Velocity.lua",
+          "sha256": "3b0f973cae8cfd46f2a6e2fc9015107aa5549a032e27a1302fb80c5e8e45158d"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoBlock",
+          "path": "1.8arena/77790193039862 - game/Blatant/AutoBlock.lua",
+          "sha256": "55dd7ac0fd42f552947ba293879ade481ba2236a967dd21f96613f14bb8f87cc"
+        },
+        {
+          "category": "Blatant",
+          "name": "Fly",
+          "path": "1.8arena/77790193039862 - game/Blatant/Fly.lua",
+          "sha256": "ac90f10b9d9505ad64f67e463f07b4173c1581a9853b73bb4635e1f061f950f9"
+        },
+        {
+          "category": "Blatant",
+          "name": "HighJump",
+          "path": "1.8arena/77790193039862 - game/Blatant/HighJump.lua",
+          "sha256": "869a71b61e504df4fbbb0ad1b77a89b9576c6906fc52ece66a2118eacce92301"
+        },
+        {
+          "category": "Blatant",
+          "name": "HitBoxes",
+          "path": "1.8arena/77790193039862 - game/Blatant/HitBoxes.lua",
+          "sha256": "9c278e6677edacf36aa46b764db427e113a881fa63e019e226a026673094249c"
+        },
+        {
+          "category": "Blatant",
+          "name": "Killaura",
+          "path": "1.8arena/77790193039862 - game/Blatant/Killaura.lua",
+          "sha256": "cb78ae57ce16cf62de50d48bac95808d5174de66918b794790eae2bcce0545bc"
+        },
+        {
+          "category": "Blatant",
+          "name": "LongJump",
+          "path": "1.8arena/77790193039862 - game/Blatant/LongJump.lua",
+          "sha256": "e5af24ac7b29c719d1f9202646501a47ec678212dd916b92e4b5590730774679"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoSlowdown",
+          "path": "1.8arena/77790193039862 - game/Blatant/NoSlowdown.lua",
+          "sha256": "5e3a175e5a86271e98f5cb3992a82ae1d02c5f76463938dc1e673c89d52c6d25"
+        },
+        {
+          "category": "Blatant",
+          "name": "Speed",
+          "path": "1.8arena/77790193039862 - game/Blatant/Speed.lua",
+          "sha256": "88b5d61122e967252c38847b0cab81f5a49cb518c78c4a798e057e29680e7dc1"
+        },
+        {
+          "category": "Blatant",
+          "name": "Spider",
+          "path": "1.8arena/77790193039862 - game/Blatant/Spider.lua",
+          "sha256": "1fa823cd0520e70e6c9a66075d3cdf4b59c777066f3eff83c77fa1953d37fa8e"
+        },
+        {
+          "category": "World",
+          "name": "FastBreak",
+          "path": "1.8arena/77790193039862 - game/World/FastBreak.lua",
+          "sha256": "442a29b7c94fe357364fdcd51f7401ea3a310850aae37cc36b30026f7b0b8c74"
+        },
+        {
+          "category": "World",
+          "name": "FastPlace",
+          "path": "1.8arena/77790193039862 - game/World/FastPlace.lua",
+          "sha256": "fb14ecfad062d37964854f11a2ffb2b1c8168d92fc0800ec449c07f09212b612"
+        }
+      ],
+      "output_sha256": "e787ee4c3b5aa700a618106fa464e6fff5a730f617e97458f93ccf267eff9397",
+      "source": "1.8arena/77790193039862 - game"
+    },
+    "bedwars": {
+      "base_sha256": "b81cb05f94800d2afb6bbce8b58f4f752cd898efff95a8202c788f258db97012",
+      "module_count": 69,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "AimAssist",
+          "path": "bedwars/6872274481 - game/Combat/AimAssist.lua",
+          "sha256": "4db2357be30ed6e924bd82b745887e4eace67238d6974417e9a4563a8e76d182"
+        },
+        {
+          "category": "Combat",
+          "name": "AutoClicker",
+          "path": "bedwars/6872274481 - game/Combat/AutoClicker.lua",
+          "sha256": "4515a0023698fa119987e2aa1df7aca844557e67a60d35016b47c3d4b7fee214"
+        },
+        {
+          "category": "Combat",
+          "name": "NoClickDelay",
+          "path": "bedwars/6872274481 - game/Combat/NoClickDelay.lua",
+          "sha256": "4dbbc63cd8c7c0d3a34968356c15e0b946b4e8dbab6949c1a1e7c982a5b2229a"
+        },
+        {
+          "category": "Combat",
+          "name": "Reach",
+          "path": "bedwars/6872274481 - game/Combat/Reach.lua",
+          "sha256": "5f5e68a49edfb22ef51e9a0e04a3d27dc86c1cda6e9b20cff788e00d7612737e"
+        },
+        {
+          "category": "Combat",
+          "name": "Sprint",
+          "path": "bedwars/6872274481 - game/Combat/Sprint.lua",
+          "sha256": "80786fec758b32e36d82a458bf08a1f6146c6763861963af7f4c41c802a39eb6"
+        },
+        {
+          "category": "Combat",
+          "name": "TriggerBot",
+          "path": "bedwars/6872274481 - game/Combat/TriggerBot.lua",
+          "sha256": "73c9adbf62f594860164f0052a1cac2863faeb63d633b6e182bb4023e90e3880"
+        },
+        {
+          "category": "Combat",
+          "name": "Velocity",
+          "path": "bedwars/6872274481 - game/Combat/Velocity.lua",
+          "sha256": "48ed357d8fa92239ec807d5d0104861efc1c2ada0069085008ca4011d2a81206"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiFall",
+          "path": "bedwars/6872274481 - game/Blatant/AntiFall.lua",
+          "sha256": "a8c214e5de4379b3d6e3f8bc88197d1e70d818e9a9a121dbc0577eed1ab8b16c"
+        },
+        {
+          "category": "Blatant",
+          "name": "FastBreak",
+          "path": "bedwars/6872274481 - game/Blatant/FastBreak.lua",
+          "sha256": "80607ba41c61e57f439e8373435912da79548e95ef0dc756582c07bc925979aa"
+        },
+        {
+          "category": "Blatant",
+          "name": "Fly",
+          "path": "bedwars/6872274481 - game/Blatant/Fly.lua",
+          "sha256": "b2b62fc8766f746102d907c41d877118e2b4fb41fbdf4e9e44810ba38704ddc1"
+        },
+        {
+          "category": "Blatant",
+          "name": "HitBoxes",
+          "path": "bedwars/6872274481 - game/Blatant/HitBoxes.lua",
+          "sha256": "92a7e4d5d6ffd8ce526e11a53cb9dbc327fb94c02e5e19a770be275c25f4bd39"
+        },
+        {
+          "category": "Blatant",
+          "name": "KeepSprint",
+          "path": "bedwars/6872274481 - game/Blatant/KeepSprint.lua",
+          "sha256": "7330d93c93ed57def0dc4a292042ec30dafeded99b3bc94f56629ed28f24271a"
+        },
+        {
+          "category": "Blatant",
+          "name": "Killaura",
+          "path": "bedwars/6872274481 - game/Blatant/Killaura.lua",
+          "sha256": "24bacebfd88099c0cd40d3e61ca9574597def7dab3478b22def46574851f3aa8"
+        },
+        {
+          "category": "Blatant",
+          "name": "LongJump",
+          "path": "bedwars/6872274481 - game/Blatant/LongJump.lua",
+          "sha256": "927d0735d9ce8d79153da478ac5ff9f1a23b9db57ac3b9fb1a159fc94621d658"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoFall",
+          "path": "bedwars/6872274481 - game/Blatant/NoFall.lua",
+          "sha256": "68fca2e2dbf6a12019a6732368ed94b77b419c08a838313899d973c7526894c2"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoSlowdown",
+          "path": "bedwars/6872274481 - game/Blatant/NoSlowdown.lua",
+          "sha256": "17b6af8b28e086ffe08a83437b1406884bd277c082e495c6621fa87e6aaec4be"
+        },
+        {
+          "category": "Blatant",
+          "name": "ProjectileAimbot",
+          "path": "bedwars/6872274481 - game/Blatant/ProjectileAimbot.lua",
+          "sha256": "e5eed9756eb03437ac01593e21de209d815acb2c69f6b36716cddd0fc396fb2f"
+        },
+        {
+          "category": "Blatant",
+          "name": "ProjectileAura",
+          "path": "bedwars/6872274481 - game/Blatant/ProjectileAura.lua",
+          "sha256": "a28b91f026087c7e55cf0b54be171b93e94f3c52e85cf96b44de5e2ab9f2f0d7"
+        },
+        {
+          "category": "Blatant",
+          "name": "Speed",
+          "path": "bedwars/6872274481 - game/Blatant/Speed.lua",
+          "sha256": "cde89651431988f38cca1eaf38f391ca2574c96c186c89bf18b6a9c2e937b059"
+        },
+        {
+          "category": "Render",
+          "name": "BedESP",
+          "path": "bedwars/6872274481 - game/Render/BedESP.lua",
+          "sha256": "e84cb78a3cf447a3b47c7e455f9b9cac7d02e2055aba8eda282e6ecc64bc2bdb"
+        },
+        {
+          "category": "Render",
+          "name": "Health",
+          "path": "bedwars/6872274481 - game/Render/Health.lua",
+          "sha256": "c6f9c4c26b92e0bcabdc30bb94b586ba4b44d55dd7352ec931c11a5a98fdf152"
+        },
+        {
+          "category": "Render",
+          "name": "KitESP",
+          "path": "bedwars/6872274481 - game/Render/KitESP.lua",
+          "sha256": "fa59234b96e91a473a9e8691062320f42f9dd08c83dfc15b7c471a3402debf3d"
+        },
+        {
+          "category": "Render",
+          "name": "NameTags",
+          "path": "bedwars/6872274481 - game/Render/NameTags.lua",
+          "sha256": "c0438f9ffd146996ec39d2e514d769383bd60d186c612e2686f08c9f4ab1cd70"
+        },
+        {
+          "category": "Render",
+          "name": "StorageESP",
+          "path": "bedwars/6872274481 - game/Render/StorageESP.lua",
+          "sha256": "8f3c138b2cd7d23e406a1a7f0adc26db7b72dbd0182bcd1aff6752f40010fe63"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoBalloon",
+          "path": "bedwars/6872274481 - game/Utility/AutoBalloon.lua",
+          "sha256": "6dc6e1b197fe83f8a57976cb919c4af0dd44e1fb2d36b2eb3bab7f333c60a3c6"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoKit",
+          "path": "bedwars/6872274481 - game/Utility/AutoKit.lua",
+          "sha256": "325a4addf6483d07b8b9c0d6711c3d69ec5fb9bc119e780d92122b7dd913d925"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoPearl",
+          "path": "bedwars/6872274481 - game/Utility/AutoPearl.lua",
+          "sha256": "cbb15254d684ddee21e5837ecbf6c7432ee42da91c4745c7d25c101265fe54f1"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoPlay",
+          "path": "bedwars/6872274481 - game/Utility/AutoPlay.lua",
+          "sha256": "17478ef5d8eb9267656ce3b8dc2cfbe9f965ecea2b38dd9f246ac7cb40bb01e4"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoShoot",
+          "path": "bedwars/6872274481 - game/Utility/AutoShoot.lua",
+          "sha256": "a7684354911400bd0d079fdbe58e2036592af30c8c71f9e3c3f27a554e30cfe0"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoToxic",
+          "path": "bedwars/6872274481 - game/Utility/AutoToxic.lua",
+          "sha256": "1215d04e1e2b4c654657a54510bb2bea256985acedda9fcde5390e5b0338cd19"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoVoidDrop",
+          "path": "bedwars/6872274481 - game/Utility/AutoVoidDrop.lua",
+          "sha256": "7491ccf283a1f71902cdde95da4abaff858cf76f5291662565711ba7c3eb6a6c"
+        },
+        {
+          "category": "Utility",
+          "name": "MissileTP",
+          "path": "bedwars/6872274481 - game/Utility/MissileTP.lua",
+          "sha256": "bdc6eac82e063f1cec79e70ac9e153be4fb21972e5904931ded8fd3f2c918ded"
+        },
+        {
+          "category": "Utility",
+          "name": "PickupRange",
+          "path": "bedwars/6872274481 - game/Utility/PickupRange.lua",
+          "sha256": "90069d9750fd3ee6017516491dd800c3ba57601fb070cd750d5306071f4c012f"
+        },
+        {
+          "category": "Utility",
+          "name": "RavenTP",
+          "path": "bedwars/6872274481 - game/Utility/RavenTP.lua",
+          "sha256": "ddd24b8bb3f23e89e28c817daf7f4c5f861a67d70e68efaefe7eac1ae2648b9a"
+        },
+        {
+          "category": "Utility",
+          "name": "Scaffold",
+          "path": "bedwars/6872274481 - game/Utility/Scaffold.lua",
+          "sha256": "5856c9012a3bf55c64edb91a5d77c7d9c1058ef1ec5404e6dc0312b6ef7dd72f"
+        },
+        {
+          "category": "Utility",
+          "name": "ShopTierBypass",
+          "path": "bedwars/6872274481 - game/Utility/ShopTierBypass.lua",
+          "sha256": "7818fa307a647c8a24c9548eab1b95311a948dc4c28c92f304bee49eb13361e8"
+        },
+        {
+          "category": "Utility",
+          "name": "StaffDetector",
+          "path": "bedwars/6872274481 - game/Utility/StaffDetector.lua",
+          "sha256": "fa1b219643835c1cbf0d5e84628f98c23141f2725ccc1499c904da863a64a7f8"
+        },
+        {
+          "category": "Utility",
+          "name": "TrapDisabler",
+          "path": "bedwars/6872274481 - game/Utility/TrapDisabler.lua",
+          "sha256": "a64c4ea7308913d5b5e99e9b2c550e7aba85753ca3d85631488bbf6def7e866a"
+        },
+        {
+          "category": "World",
+          "name": "Anti-AFK",
+          "path": "bedwars/6872274481 - game/World/Anti-AFK.lua",
+          "sha256": "b14a23d918e32d39d9f9d05317bbb1eeeb1b4e5f76dbe59400f2979609edd108"
+        },
+        {
+          "category": "World",
+          "name": "AutoSuffocate",
+          "path": "bedwars/6872274481 - game/World/AutoSuffocate.lua",
+          "sha256": "982cfefbf7a53138a03d8775a6b4688d1066e744a9cd36c6c901ef8b18a44e0d"
+        },
+        {
+          "category": "World",
+          "name": "AutoTool",
+          "path": "bedwars/6872274481 - game/World/AutoTool.lua",
+          "sha256": "24cec3f76fd92a4c1f6818003e53ac4bda15b4cf1f1e0feaed52cdcf74f81ec9"
+        },
+        {
+          "category": "World",
+          "name": "BedPlates",
+          "path": "bedwars/6872274481 - game/World/BedPlates.lua",
+          "sha256": "4e61e5498c8d5e4dcecdc9090e727a0ecba1524935120eed870ba30782d62e48"
+        },
+        {
+          "category": "World",
+          "name": "BedProtector",
+          "path": "bedwars/6872274481 - game/World/BedProtector.lua",
+          "sha256": "6b8410d4e1255e7b2b7a435024426c40579035e60c30022e35a21cdfda0e1b7c"
+        },
+        {
+          "category": "World",
+          "name": "Breaker",
+          "path": "bedwars/6872274481 - game/World/Breaker.lua",
+          "sha256": "8a3868101c0144586662f23d89b1cc01a653ad52ae066328d8199a5d5624b456"
+        },
+        {
+          "category": "World",
+          "name": "ChestSteal",
+          "path": "bedwars/6872274481 - game/World/ChestSteal.lua",
+          "sha256": "9ded4ce0542a577a73143c9ad6ccb05d1b587e2f9ee2904c0a77ab33b8de5264"
+        },
+        {
+          "category": "World",
+          "name": "Schematica",
+          "path": "bedwars/6872274481 - game/World/Schematica.lua",
+          "sha256": "87249f2bb501106908c2d0ba92012354c1857fa4cf58871545fa2a66e6333392"
+        },
+        {
+          "category": "Inventory",
+          "name": "ArmorSwitch",
+          "path": "bedwars/6872274481 - game/Inventory/ArmorSwitch.lua",
+          "sha256": "126c6de9c039c1c54cf118a81625287425a98f351949e0070671f23064528041"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoBank",
+          "path": "bedwars/6872274481 - game/Inventory/AutoBank.lua",
+          "sha256": "e6f330e50f2b70c34d0ad2c5c0138a95b353d3ff370dff0d53534964b2b94b03"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoBuy",
+          "path": "bedwars/6872274481 - game/Inventory/AutoBuy.lua",
+          "sha256": "d362e6b44bc2ff351018ac358cd2d60da34e81c2cf3f6b0a78946747affea26e"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoConsume",
+          "path": "bedwars/6872274481 - game/Inventory/AutoConsume.lua",
+          "sha256": "ad556abc1b69466429c0766cdf1154eb4b22a69194bf30cf3efe3e43518d5b6d"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoHotbar",
+          "path": "bedwars/6872274481 - game/Inventory/AutoHotbar.lua",
+          "sha256": "0669c3b5f7f8cba9be07dfa32d91fde5bbb282924b641e8e8282b6d8e0cc4b43"
+        },
+        {
+          "category": "Inventory",
+          "name": "FastConsume",
+          "path": "bedwars/6872274481 - game/Inventory/FastConsume.lua",
+          "sha256": "c368f26bd7b5bc0aef88996ff8414f05587166e97bfc2e638e92dd2435020ba0"
+        },
+        {
+          "category": "Inventory",
+          "name": "FastDrop",
+          "path": "bedwars/6872274481 - game/Inventory/FastDrop.lua",
+          "sha256": "5d6eded4d3c31dfe54198d7e07c3858000b8431236d5bc14c5e7ccacd139006b"
+        },
+        {
+          "category": "Legit",
+          "name": "BedBreakEffect",
+          "path": "bedwars/6872274481 - game/Legit/BedBreakEffect.lua",
+          "sha256": "8876245ad00592eaef9c10873d6ff1dbf0bdaf8db42d434cf3056ea722af77e6"
+        },
+        {
+          "category": "Legit",
+          "name": "CleanKit",
+          "path": "bedwars/6872274481 - game/Legit/CleanKit.lua",
+          "sha256": "833f91dec736a56480cd272b4c39f8c9fddc76eb5fd5d9305da88c3719f83d21"
+        },
+        {
+          "category": "Legit",
+          "name": "Crosshair",
+          "path": "bedwars/6872274481 - game/Legit/Crosshair.lua",
+          "sha256": "e09ce2d89c5ab01ec85d00e066ace0750995090b5108bfe18f479b47520c7d03"
+        },
+        {
+          "category": "Legit",
+          "name": "DamageIndicator",
+          "path": "bedwars/6872274481 - game/Legit/DamageIndicator.lua",
+          "sha256": "73953c8cd2a5a1368d0503ce16c7414ae8094333a17365af59a901ff3a84e7dc"
+        },
+        {
+          "category": "Legit",
+          "name": "FOV",
+          "path": "bedwars/6872274481 - game/Legit/FOV.lua",
+          "sha256": "3bcd90431314ba7c1d099a9ab12141652d03d672f0f03c4641fd12d09a599883"
+        },
+        {
+          "category": "Legit",
+          "name": "FPSBoost",
+          "path": "bedwars/6872274481 - game/Legit/FPSBoost.lua",
+          "sha256": "84f4db7961726f185f7eed12097c6eb7a8681f11c8020a62d3718b45343b4dd6"
+        },
+        {
+          "category": "Legit",
+          "name": "HitColor",
+          "path": "bedwars/6872274481 - game/Legit/HitColor.lua",
+          "sha256": "9ea322033e7b62e2ca6780147f78b2339257ace4772bb1af56fba62584f721ed"
+        },
+        {
+          "category": "Legit",
+          "name": "HitFix",
+          "path": "bedwars/6872274481 - game/Legit/HitFix.lua",
+          "sha256": "8957284168d0250f13e7f6be298c4368bce86e266458a69772178862225941fd"
+        },
+        {
+          "category": "Legit",
+          "name": "Interface",
+          "path": "bedwars/6872274481 - game/Legit/Interface.lua",
+          "sha256": "0c24ff5a2137f6c7a48651713e173a0e231081ef3e1798012edea31588cc76fa"
+        },
+        {
+          "category": "Legit",
+          "name": "KillEffect",
+          "path": "bedwars/6872274481 - game/Legit/KillEffect.lua",
+          "sha256": "ab016e731b8316799b084ae8eb63a02610fcacc03d1d3b7d1eabee6594065856"
+        },
+        {
+          "category": "Legit",
+          "name": "ReachDisplay",
+          "path": "bedwars/6872274481 - game/Legit/ReachDisplay.lua",
+          "sha256": "5b8fd99105337a71b67a2b61cad237a9989420ec40d28d310ff4954b18f8aea9"
+        },
+        {
+          "category": "Legit",
+          "name": "SongBeats",
+          "path": "bedwars/6872274481 - game/Legit/SongBeats.lua",
+          "sha256": "c6e3b4d2b654b5cff1af4eb52fa60178abf78d2230ef963806496160dac7265c"
+        },
+        {
+          "category": "Legit",
+          "name": "SoundChanger",
+          "path": "bedwars/6872274481 - game/Legit/SoundChanger.lua",
+          "sha256": "29f64e47f28179a3bf5846b4f25e8d21c0ca8fe2ee2a939d9473619518af2d68"
+        },
+        {
+          "category": "Legit",
+          "name": "UICleanup",
+          "path": "bedwars/6872274481 - game/Legit/UICleanup.lua",
+          "sha256": "7bc37c17851870bac7bc5ea59b7dd650ee6a55de3a533d3a9f8854ec493cdb96"
+        },
+        {
+          "category": "Legit",
+          "name": "Viewmodel",
+          "path": "bedwars/6872274481 - game/Legit/Viewmodel.lua",
+          "sha256": "76a473fa72288473ff521e0e05f7851af15cec9492647e3e16d33c2cab750a59"
+        },
+        {
+          "category": "Legit",
+          "name": "WinEffect",
+          "path": "bedwars/6872274481 - game/Legit/WinEffect.lua",
+          "sha256": "08215280a4124ae661cc48c73bde6825dd77812a9724c9e9fcbcc400ce402f77"
+        }
+      ],
+      "output_sha256": "80526f688ccdce9bcd1dbb74872df2af01c6300a3f436ef1164f7729c27314e6",
+      "source": "bedwars/6872274481 - game"
+    },
+    "bedwars_lobby": {
+      "base_sha256": "0ce066eca60ccfb0132aabfb14491c9a7ef5ed3440b6812336c5c2c8e70a9889",
+      "module_count": 2,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "Sprint",
+          "path": "bedwars/6872265039 - lobby/Combat/Sprint.lua",
+          "sha256": "60902e42e16b7a0fae2307337f993e332e323632e4a32c3cd9eb25281aa33dc1"
+        },
+        {
+          "category": "World",
+          "name": "AutoGamble",
+          "path": "bedwars/6872265039 - lobby/World/AutoGamble.lua",
+          "sha256": "4c8a15b3d2cac4c706fd017692caff1d55e2384167576f026e7af43769483f2c"
+        }
+      ],
+      "output_sha256": "13615a30833b689afa5f9d6df455f6693b373f40c4ebfa5e8b662cd3f5d8239a",
+      "source": "bedwars/6872265039 - lobby"
+    },
+    "blocktales": {
+      "base_sha256": "510bef200733b37012faa4280327f114a480c7765b9f3c49300adf6fa6126b85",
+      "module_count": 14,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "AutoAction",
+          "path": "blocktales/16483433878 - blocktales/Combat/AutoAction.lua",
+          "sha256": "1a3d31e7152a52a61ffd4bd9281941ff3b38bcb9e0a32587b01a8a0705c1c4ab"
+        },
+        {
+          "category": "Combat",
+          "name": "MissCooldown",
+          "path": "blocktales/16483433878 - blocktales/Combat/MissCooldown.lua",
+          "sha256": "7cf7a3300d62e111d0eed7adb50b87e9fbc86f93cba3f682d36f49d2cd94d5ce"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiHazard",
+          "path": "blocktales/16483433878 - blocktales/Blatant/AntiHazard.lua",
+          "sha256": "80604f436851127c6f410fc338abfee58926127d589903d7ab2a732298375308"
+        },
+        {
+          "category": "Blatant",
+          "name": "Fly",
+          "path": "blocktales/16483433878 - blocktales/Blatant/Fly.lua",
+          "sha256": "56a1f982582fa507e9af5d1ef0c287dc53bba741ab38df789c7f4b9bb9bf88ba"
+        },
+        {
+          "category": "Blatant",
+          "name": "FlyingAttack",
+          "path": "blocktales/16483433878 - blocktales/Blatant/FlyingAttack.lua",
+          "sha256": "d920f06068362a47411b28925f7264c14ced7acc8490fd9fc8ef42b7312b2b96"
+        },
+        {
+          "category": "Blatant",
+          "name": "LongJump",
+          "path": "blocktales/16483433878 - blocktales/Blatant/LongJump.lua",
+          "sha256": "695c51115a5759eb232e630bcaf497a660512b5e8f08b2297d933f34ab4cd738"
+        },
+        {
+          "category": "Blatant",
+          "name": "PickupTP",
+          "path": "blocktales/16483433878 - blocktales/Blatant/PickupTP.lua",
+          "sha256": "bd4c5cac0b93325f376b3f04539fdc073957509dbcbb9a047af6744ded5a502c"
+        },
+        {
+          "category": "Blatant",
+          "name": "Speed",
+          "path": "blocktales/16483433878 - blocktales/Blatant/Speed.lua",
+          "sha256": "a5cd2b60503462f76009686da0053e7c632e9a693f0cf4ab6f464c292d5a775b"
+        },
+        {
+          "category": "Blatant",
+          "name": "SpeedSpin",
+          "path": "blocktales/16483433878 - blocktales/Blatant/SpeedSpin.lua",
+          "sha256": "974de8c87e2a6d45e8b8e3a3917aef21014e8112041fff60137ad778ae98d68d"
+        },
+        {
+          "category": "Render",
+          "name": "PickupTracers",
+          "path": "blocktales/16483433878 - blocktales/Render/PickupTracers.lua",
+          "sha256": "78998c00d87c996d47d001aace0f36f2495121dd48bcfdfad711aa8cc0dfcc1d"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoCamel",
+          "path": "blocktales/16483433878 - blocktales/Utility/AutoCamel.lua",
+          "sha256": "a1316dab9b31bd3ff81b8210380feb0146616190ac83de01746b8fb71869b195"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoCloudGrind",
+          "path": "blocktales/16483433878 - blocktales/Utility/AutoCloudGrind.lua",
+          "sha256": "e81a770e6d2211c3bbe16e080c4c8fa3a3f94e52d82b05b1b4253815fdf2b889"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoFish",
+          "path": "blocktales/16483433878 - blocktales/Utility/AutoFish.lua",
+          "sha256": "edb66f7df3f6860cc3681b46850ef3856430aa2dedd1b2d4f0d603bd1797ba6a"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoPaint",
+          "path": "blocktales/16483433878 - blocktales/Utility/AutoPaint.lua",
+          "sha256": "f352086cd1b847905d93b47ef9133b2fd16e05b900a2d42e5c06be7e7b9e13aa"
+        }
+      ],
+      "output_sha256": "3518258f464c5f0366281bd48f8b873532de63d94b203d81fc93669c5b735628",
+      "source": "blocktales/16483433878 - blocktales"
+    },
+    "blockwars": {
+      "base_sha256": "67e689aac494e306d70df2d1eb5d208f952a0ac36dbbcfa1ab2ad65d47a94851",
+      "module_count": 11,
+      "modules": [
+        {
+          "category": "Blatant",
+          "name": "AnticheatBypass",
+          "path": "132768098780837 - blockwars/Blatant/AnticheatBypass.lua",
+          "sha256": "ccd7bfa3150f3c3fe845eb53c555c3cc302d26feee7598462912a25f8d4069a9"
+        },
+        {
+          "category": "Blatant",
+          "name": "Fly",
+          "path": "132768098780837 - blockwars/Blatant/Fly.lua",
+          "sha256": "7909f28375e83e047df5eaa3757210b6e933117be19737f1c99dce4172257c94"
+        },
+        {
+          "category": "Blatant",
+          "name": "Killaura",
+          "path": "132768098780837 - blockwars/Blatant/Killaura.lua",
+          "sha256": "11ee18733f6a81782cae80cdfe995ba23a1e2bc06d046a9ef70060982abc11f1"
+        },
+        {
+          "category": "Blatant",
+          "name": "Speed",
+          "path": "132768098780837 - blockwars/Blatant/Speed.lua",
+          "sha256": "f863939e1d1cd7b29cc35b32bb485a30b9ee5b6f2e11bfef3bfbd7609d751ca0"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoLeave",
+          "path": "132768098780837 - blockwars/Utility/AutoLeave.lua",
+          "sha256": "8d6a491d82820bfc6eeb6f65856625070f745a53689b329d08f1943d639d5667"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoQueue",
+          "path": "132768098780837 - blockwars/Utility/AutoQueue.lua",
+          "sha256": "5e9804468c30d0ee2b6b3a5c9bac2e9d75923fdbd72bb15a8bceaacf6b5761c5"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoToxic",
+          "path": "132768098780837 - blockwars/Utility/AutoToxic.lua",
+          "sha256": "61e7ce0ca39d24ece8055624187a6b51e72a6dfff4d053eae3f446a9df2300e2"
+        },
+        {
+          "category": "World",
+          "name": "Breaker",
+          "path": "132768098780837 - blockwars/World/Breaker.lua",
+          "sha256": "2ba7800c254ec973e572acb7b83df00f1573ba5905ec2d9fa2b96f7a7016fc78"
+        },
+        {
+          "category": "World",
+          "name": "FastBreak",
+          "path": "132768098780837 - blockwars/World/FastBreak.lua",
+          "sha256": "b1dde07615f42592b6617b1156b54b4d7852dccaf03a0f8a1b4c3842db3ab1ce"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoBuy",
+          "path": "132768098780837 - blockwars/Inventory/AutoBuy.lua",
+          "sha256": "54fc31fb50478f5ef2bdb9b1d093a12dbbef737dc89ad3f7f52b821527e495d8"
+        },
+        {
+          "category": "Legit",
+          "name": "HideShield",
+          "path": "132768098780837 - blockwars/Legit/HideShield.lua",
+          "sha256": "234fd60701954cd53926b7bface688396b94dc3dbd92bee2a45d5a5fd851d956"
+        }
+      ],
+      "output_sha256": "4199114d2bf83bc2e6641a69ff384dc090546571bf308cee220a2e4d98240599",
+      "source": "132768098780837 - blockwars"
+    },
+    "bridge": {
+      "base_sha256": "0d15f1c1bbdcc95ce966d918be81621d84fe0123fd0d1f348a7938f8b19b1f23",
+      "module_count": 13,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "AutoClicker",
+          "path": "bridge duel/139566161526375 - game/Combat/AutoClicker.lua",
+          "sha256": "b25e89f58423e48f5ef25f26e5d3f5b599b09033a9c718e0e9bf55862ff49c3e"
+        },
+        {
+          "category": "Combat",
+          "name": "Reach",
+          "path": "bridge duel/139566161526375 - game/Combat/Reach.lua",
+          "sha256": "409a7076f13ed8038d222905724ba5450aea4db5aa818559d86659522ff0378b"
+        },
+        {
+          "category": "Combat",
+          "name": "Velocity",
+          "path": "bridge duel/139566161526375 - game/Combat/Velocity.lua",
+          "sha256": "8d9c37c577bfa3be55954056fefd6a223814f29835f4332435ca6b2b0b397c9e"
+        },
+        {
+          "category": "Blatant",
+          "name": "Criticals",
+          "path": "bridge duel/139566161526375 - game/Blatant/Criticals.lua",
+          "sha256": "e44bb8183756dc4ecf7380f1b595be0cefae46c0a80370c73bbaccb7dabea9de"
+        },
+        {
+          "category": "Blatant",
+          "name": "InvMove",
+          "path": "bridge duel/139566161526375 - game/Blatant/InvMove.lua",
+          "sha256": "d5446629b84e5a2f79069dd8f0b18f215a469a396b1e60c2ddfb7870ae4b8b88"
+        },
+        {
+          "category": "Blatant",
+          "name": "Killaura",
+          "path": "bridge duel/139566161526375 - game/Blatant/Killaura.lua",
+          "sha256": "5a8fdb935e0673ab039b6ee5b0747e2c4ddc5214ea71afe8d1799302a7cbc5cc"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoFall",
+          "path": "bridge duel/139566161526375 - game/Blatant/NoFall.lua",
+          "sha256": "880f2052df2a196a11f620b7fe1ac6566024860f85773cdfb68e77a8715776bc"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoSlowdown",
+          "path": "bridge duel/139566161526375 - game/Blatant/NoSlowdown.lua",
+          "sha256": "dd8e10ebf707529c530496d79b6d1cb61f050f5b15f02d8e70cc8e0ff5fbac01"
+        },
+        {
+          "category": "Blatant",
+          "name": "ProjectileAimbot",
+          "path": "bridge duel/139566161526375 - game/Blatant/ProjectileAimbot.lua",
+          "sha256": "8acb588b19a41c66b58650fe5a8c0819d99cfea6d092693228b2b325f508898b"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoPlay",
+          "path": "bridge duel/139566161526375 - game/Utility/AutoPlay.lua",
+          "sha256": "e9fe6b422d9b4b8f6500afda345cd959775131db89a27fe57984d542692da71f"
+        },
+        {
+          "category": "Utility",
+          "name": "Scaffold",
+          "path": "bridge duel/139566161526375 - game/Utility/Scaffold.lua",
+          "sha256": "15d22561d988a87b63e1c8f4394eb5284706bc3d9186d44efd2b090c3b9151dc"
+        },
+        {
+          "category": "World",
+          "name": "Breaker",
+          "path": "bridge duel/139566161526375 - game/World/Breaker.lua",
+          "sha256": "2e3b817e80827aed1634eeebacc4dec0ce9caa0addfeaa5d9dca77cff8bb38f2"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoBuy",
+          "path": "bridge duel/139566161526375 - game/Inventory/AutoBuy.lua",
+          "sha256": "3a2a69b632a42085d7089f1a04c956bdceeca7423371a81b4840695085eefc5f"
+        }
+      ],
+      "output_sha256": "b1a5bf5bfd146150f704a2e7c891fe5133c68710e57c8d8025a56413027d34f7",
+      "source": "bridge duel/139566161526375 - game"
+    },
+    "flee": {
+      "base_sha256": "73fb82ab8e06cc5ae812f4f43cf9fe3b69bb2413925155787651b16cec54bbed",
+      "module_count": 7,
+      "modules": [
+        {
+          "category": "Blatant",
+          "name": "NoSlowdown",
+          "path": "893973440 - flee the facility/Blatant/NoSlowdown.lua",
+          "sha256": "043880289f697da364aa65d67f93b401d61302ad704bb0b2be9ec47d3d03750c"
+        },
+        {
+          "category": "Blatant",
+          "name": "PhaseHammer",
+          "path": "893973440 - flee the facility/Blatant/PhaseHammer.lua",
+          "sha256": "9147f16cd38cda3d08f743938be4bb788c2beedd6ce77a7f3598c3c12586db36"
+        },
+        {
+          "category": "Blatant",
+          "name": "RestrainBeast",
+          "path": "893973440 - flee the facility/Blatant/RestrainBeast.lua",
+          "sha256": "e29433919dc2e6fe12d3d0cfe0086759092cf0e6b6e211708ec6bf15fc5dec4b"
+        },
+        {
+          "category": "Blatant",
+          "name": "SlowBeast",
+          "path": "893973440 - flee the facility/Blatant/SlowBeast.lua",
+          "sha256": "aac004ed487d78ef46c0096d5b218446a5117f9d345bec051d0568d1230804d0"
+        },
+        {
+          "category": "Blatant",
+          "name": "SpamBeast",
+          "path": "893973440 - flee the facility/Blatant/SpamBeast.lua",
+          "sha256": "49a401fd650f542b97f9c1bfdf8ba6394363688cf51c88f9dd707c20f4ea2d66"
+        },
+        {
+          "category": "Render",
+          "name": "ComputerESP",
+          "path": "893973440 - flee the facility/Render/ComputerESP.lua",
+          "sha256": "401f9a7d4927384421a3d797f01d7a642559bdca66a1d0d7c5ec333201235f93"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoComputer",
+          "path": "893973440 - flee the facility/Utility/AutoComputer.lua",
+          "sha256": "846f39df774ebdf9e86130542f444176db5474eb892b18c8b7bc0eb75067d40f"
+        }
+      ],
+      "output_sha256": "a70951ca4335ca67f78a117f67beacf666b5a3759fc32f2a417092df15576770",
+      "source": "893973440 - flee the facility"
+    },
+    "frontlines": {
+      "base_sha256": "acb1ec492b84be70494d32fbff51b85f4127f03c52d691d291095c6f00985e8f",
+      "module_count": 15,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "AimAssist",
+          "path": "frontlines/5938036553 - game/Combat/AimAssist.lua",
+          "sha256": "55cfcb80862188257ada57b93dfda561b12246f3255118fedb0601df9e2bc422"
+        },
+        {
+          "category": "Combat",
+          "name": "SilentAim",
+          "path": "frontlines/5938036553 - game/Combat/SilentAim.lua",
+          "sha256": "b68f7b778c833fdb63423ca15cdd61228901882ff35e9ca5dd9b3b0d2a679150"
+        },
+        {
+          "category": "Combat",
+          "name": "Sprint",
+          "path": "frontlines/5938036553 - game/Combat/Sprint.lua",
+          "sha256": "97e8390d399616b69e1ede8950ec6edab7bf2b0e88f4ce41fc65311148f9d0a1"
+        },
+        {
+          "category": "Blatant",
+          "name": "GrenadeTP",
+          "path": "frontlines/5938036553 - game/Blatant/GrenadeTP.lua",
+          "sha256": "473e768db8e5f03135ef482c9649875ad30fa059d4e88604246c37f841d9f534"
+        },
+        {
+          "category": "Blatant",
+          "name": "GunModifications",
+          "path": "frontlines/5938036553 - game/Blatant/GunModifications.lua",
+          "sha256": "3b4e48549aa1c9d76bdb36aeccb360cada8920ccd028b636b3df271b7b1e5c00"
+        },
+        {
+          "category": "Blatant",
+          "name": "Killaura",
+          "path": "frontlines/5938036553 - game/Blatant/Killaura.lua",
+          "sha256": "07f2268c2b1ddea928552152c62ca9ec32273dd26a9f12d36a5ad4ac8983e7d3"
+        },
+        {
+          "category": "Blatant",
+          "name": "Phase",
+          "path": "frontlines/5938036553 - game/Blatant/Phase.lua",
+          "sha256": "a527d9fd22786db5c960eb560ef642a8dceb1a394b874ef0eed8922674c896ad"
+        },
+        {
+          "category": "Blatant",
+          "name": "SpinBot",
+          "path": "frontlines/5938036553 - game/Blatant/SpinBot.lua",
+          "sha256": "b4a7e1880036a47ba51fbff0a665f02f0f20ff67e29b2abde62a0e74b5f74744"
+        },
+        {
+          "category": "Render",
+          "name": "GrenadeESP",
+          "path": "frontlines/5938036553 - game/Render/GrenadeESP.lua",
+          "sha256": "9a324e754edf711aac54842e44f95f6a288fb9ab27181c9c151e20c5690c56c2"
+        },
+        {
+          "category": "Render",
+          "name": "NoHurtCam",
+          "path": "frontlines/5938036553 - game/Render/NoHurtCam.lua",
+          "sha256": "4b60c3aba3e4b60238b703caa52c300a16142f46280b181bcfcfb4199337bd78"
+        },
+        {
+          "category": "Render",
+          "name": "ThirdPerson",
+          "path": "frontlines/5938036553 - game/Render/ThirdPerson.lua",
+          "sha256": "3fbde1962eae2e7451742687d87baa73c4332409805edda487a5e2895f78e1c1"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoRespawn",
+          "path": "frontlines/5938036553 - game/Utility/AutoRespawn.lua",
+          "sha256": "78c9fe86d3afc6fa297e37aa74dc002916a5e94044e4a8e54d22964431482e56"
+        },
+        {
+          "category": "Utility",
+          "name": "ChatSpammer",
+          "path": "frontlines/5938036553 - game/Utility/ChatSpammer.lua",
+          "sha256": "380d4ba520a17bb9e7a9a8735fb3007a77ca5dd92a4ecfd578b447b0c77aefa8"
+        },
+        {
+          "category": "Utility",
+          "name": "PickupRange",
+          "path": "frontlines/5938036553 - game/Utility/PickupRange.lua",
+          "sha256": "2b8760127fd499f34ee5c1fa9263e64d7c3516f9387b2e71db43b3e9b0ba1a5e"
+        },
+        {
+          "category": "Legit",
+          "name": "BulletTracers",
+          "path": "frontlines/5938036553 - game/Legit/BulletTracers.lua",
+          "sha256": "36c8340346c11e5b4f336076303bd1f52471412f92a6c55b287528ebd26cb4df"
+        }
+      ],
+      "output_sha256": "b86644521f7e414df5ac4be3ab413a9469fb85644c3a0eff76126e2e281817a1",
+      "source": "frontlines/5938036553 - game"
+    },
+    "jailbreak": {
+      "base_sha256": "b805d80882be5319f55a5c3aa4ba94a861083fa20f5ad4382268318fd8a9635e",
+      "module_count": 24,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "SilentAim",
+          "path": "jailbreak/606849621 - main/Combat/SilentAim.lua",
+          "sha256": "57e4aff0a88ccbcb308ea5075cc449e7a0471587b414c70b6b10974592447ef5"
+        },
+        {
+          "category": "Combat",
+          "name": "Sprint",
+          "path": "jailbreak/606849621 - main/Combat/Sprint.lua",
+          "sha256": "86c275982a745b8255e8e47b7821946de26c82ec9334b0caa410b8dbd8aeb7c8"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoArrest",
+          "path": "jailbreak/606849621 - main/Blatant/AutoArrest.lua",
+          "sha256": "6c72fcb9b41a5e4680ccebc738560e433013c0e44c68d0227d18bc23e580602f"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoEject",
+          "path": "jailbreak/606849621 - main/Blatant/AutoEject.lua",
+          "sha256": "f42d743dc7a8ee863c4d0e1dc3d998959491bdc5b04b7ef9f531e344c72a83b5"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoPickpocket",
+          "path": "jailbreak/606849621 - main/Blatant/AutoPickpocket.lua",
+          "sha256": "bd86e786b3439b834bc3ae7ead21850747a93cc0686f6f7084626f53a99a693b"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoPop",
+          "path": "jailbreak/606849621 - main/Blatant/AutoPop.lua",
+          "sha256": "5b8910462176819368a63f279fe2e5805c239d9c160d3c52ba276794200da9b2"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoPunch",
+          "path": "jailbreak/606849621 - main/Blatant/AutoPunch.lua",
+          "sha256": "fb65327110760bce78846c51282e37653627d7c1db38874d458b4d4f0a4014c4"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoTaze",
+          "path": "jailbreak/606849621 - main/Blatant/AutoTaze.lua",
+          "sha256": "d5793e727d215203582f41e8b0b3cc1dfb90651bc2da36a8d3fcd9a2ed8493f7"
+        },
+        {
+          "category": "Blatant",
+          "name": "Fly",
+          "path": "jailbreak/606849621 - main/Blatant/Fly.lua",
+          "sha256": "fae43af02c329823e8d7be203c740c11788f5fe5a10f10b6221d47dfc94caff0"
+        },
+        {
+          "category": "Blatant",
+          "name": "ForceEquip",
+          "path": "jailbreak/606849621 - main/Blatant/ForceEquip.lua",
+          "sha256": "35372a41a667dfb5697480d6d1c948714f12dae98b1cf2490b46db2e97e412b8"
+        },
+        {
+          "category": "Blatant",
+          "name": "GunModifications",
+          "path": "jailbreak/606849621 - main/Blatant/GunModifications.lua",
+          "sha256": "21df6ee60ab6f5f0eef9954f5a29b2c1234f097cda21b21f2777e8e5aa6b8f50"
+        },
+        {
+          "category": "Blatant",
+          "name": "LazerGodmode",
+          "path": "jailbreak/606849621 - main/Blatant/LazerGodmode.lua",
+          "sha256": "699be8bdb86c8932360ca54c16c3994fc5460fb99089031e2c0061220be16747"
+        },
+        {
+          "category": "Blatant",
+          "name": "LongJump",
+          "path": "jailbreak/606849621 - main/Blatant/LongJump.lua",
+          "sha256": "6fdd59191a3fad216cc6dcb583515c80847bd9452042d236da6459cba7e47d61"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoFall",
+          "path": "jailbreak/606849621 - main/Blatant/NoFall.lua",
+          "sha256": "349159c3f1c03ca17426c993fca0c34550e50eaeef371626ac96cb3f765706c1"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoSlowdown",
+          "path": "jailbreak/606849621 - main/Blatant/NoSlowdown.lua",
+          "sha256": "23e2fa221738e39c8b7e50dfb4a234235930b4d297e1ca994b2beb5c46e6a9db"
+        },
+        {
+          "category": "Blatant",
+          "name": "Speed",
+          "path": "jailbreak/606849621 - main/Blatant/Speed.lua",
+          "sha256": "e7e1c00a9c05662b68386a0433c4f7e41cfe573d8911e48404d141cf8e52892e"
+        },
+        {
+          "category": "Blatant",
+          "name": "VehicleSpeed",
+          "path": "jailbreak/606849621 - main/Blatant/VehicleSpeed.lua",
+          "sha256": "10d404b81ba4c8ca3b544a7b930af62f14b67f3df3e9d4833bd5df08c834b648"
+        },
+        {
+          "category": "Utility",
+          "name": "InfiniteNitro",
+          "path": "jailbreak/606849621 - main/Utility/InfiniteNitro.lua",
+          "sha256": "6be210f08e848d87e83e368b4b5037cbedd082e5ea35a345bf549db9e8c3aefb"
+        },
+        {
+          "category": "Utility",
+          "name": "InstantAction",
+          "path": "jailbreak/606849621 - main/Utility/InstantAction.lua",
+          "sha256": "459651e48deeeab72d1c32454bc8ada2e5f54367710047676de58dd609778392"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoHeal",
+          "path": "jailbreak/606849621 - main/Inventory/AutoHeal.lua",
+          "sha256": "6316a0b2e3b1e2d4833d046032af84df4081d13ff9e22524982e2898caae3da5"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoHotbar",
+          "path": "jailbreak/606849621 - main/Inventory/AutoHotbar.lua",
+          "sha256": "828747a93a3fc5003e247e16d9ac64865a5b76ff81670584d96c16a1652020ac"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoPickup",
+          "path": "jailbreak/606849621 - main/Inventory/AutoPickup.lua",
+          "sha256": "c51640bc9f864e80c85d4710f59d0570f02f35676b6d63fb772b8bf79676b535"
+        },
+        {
+          "category": "Legit",
+          "name": "FPSBooster",
+          "path": "jailbreak/606849621 - main/Legit/FPSBooster.lua",
+          "sha256": "f9d5dd6f334bf10bd0fbd1fff1210c6fc953bf2537bc9298f4af36c013cce984"
+        },
+        {
+          "category": "Legit",
+          "name": "Viewmodel",
+          "path": "jailbreak/606849621 - main/Legit/Viewmodel.lua",
+          "sha256": "4e017711811a823ec61a26736b6ec627f233efffe8118771f6d066f029bd20af"
+        }
+      ],
+      "output_sha256": "0c49f0c65b1f4e216af700e7c9bd4ebf0d9e6210788e0b683ca701cb6c275cf7",
+      "source": "jailbreak/606849621 - main"
+    },
+    "prison": {
+      "base_sha256": "3c57e30337f0a1510af18f1b3de7ac43d2d7adfeeaa16ffad22080dc933c318b",
+      "module_count": 35,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "SilentAim",
+          "path": "prison life/155615604 - main/Combat/SilentAim.lua",
+          "sha256": "e6193638fb90d7e10ed8df8bd79916a1fee231d6f222d1f7e493d64021ba7aca"
+        },
+        {
+          "category": "Combat",
+          "name": "TriggerBot",
+          "path": "prison life/155615604 - main/Combat/TriggerBot.lua",
+          "sha256": "10847ae33d8a8900c25122079882751ebebf676859984adcfb30e1e68323e7b4"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiFling",
+          "path": "prison life/155615604 - main/Blatant/AntiFling.lua",
+          "sha256": "9141a0f174302cba81fd925dc0a1bb8d469a7ce0320d6923de0cdb60f8edcc76"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiInvisible",
+          "path": "prison life/155615604 - main/Blatant/AntiInvisible.lua",
+          "sha256": "45fda69c11c36bcbbc9cd948fdd72c6612cbf1db6d54c1de7e53fd696295fe57"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiKillPlane",
+          "path": "prison life/155615604 - main/Blatant/AntiKillPlane.lua",
+          "sha256": "384da6462560ec6544c9f7908970e2261ac305844e5ea2cd869e39eb20d6bb7b"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiRiotShield",
+          "path": "prison life/155615604 - main/Blatant/AntiRiotShield.lua",
+          "sha256": "fe1552e41450d7a590e448d5fae9686ebb5116d60985d34a6e343e6de392450d"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiTaze",
+          "path": "prison life/155615604 - main/Blatant/AntiTaze.lua",
+          "sha256": "ce5d7d3fbf1efcc01c063046c7a70d9841464c5e01119af53ee48fd60878b741"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoArrest",
+          "path": "prison life/155615604 - main/Blatant/AutoArrest.lua",
+          "sha256": "b20e1ed48b433515950ef37269b0c58838c0427f7a660b0e1285ae97440bcc65"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoReset",
+          "path": "prison life/155615604 - main/Blatant/AutoReset.lua",
+          "sha256": "73c7d7ee1caee880445ca48735e2a35de372cefaa8fc632fe333af6d9715852e"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoTaze",
+          "path": "prison life/155615604 - main/Blatant/AutoTaze.lua",
+          "sha256": "7fc50f839af99a3c8a1a11acddb28ed4188733c4706fd793a3d73391a196f2af"
+        },
+        {
+          "category": "Blatant",
+          "name": "FenceGodmode",
+          "path": "prison life/155615604 - main/Blatant/FenceGodmode.lua",
+          "sha256": "7bee681300b6b135ff6ca5b91163dbaf79f4c432c8624ec1476d1f3b845208f7"
+        },
+        {
+          "category": "Blatant",
+          "name": "GunModifications",
+          "path": "prison life/155615604 - main/Blatant/GunModifications.lua",
+          "sha256": "17ea1011daf1fae9f06883e3159c37bc447dd60b87f34fb255912c3e8971ae36"
+        },
+        {
+          "category": "Blatant",
+          "name": "Killaura",
+          "path": "prison life/155615604 - main/Blatant/Killaura.lua",
+          "sha256": "5d178407491550db3ed766af8e21cb89fb012f3acc4c6c8cd24785ac7cd2b901"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoJumpCooldown",
+          "path": "prison life/155615604 - main/Blatant/NoJumpCooldown.lua",
+          "sha256": "730a699e119d07c733510dc9ae64bb449603c0b6ae3c2598e6055fc461cca6c2"
+        },
+        {
+          "category": "Blatant",
+          "name": "VehicleFly",
+          "path": "prison life/155615604 - main/Blatant/VehicleFly.lua",
+          "sha256": "a6903a01975108a7e66901721992e83ebc0dbd15da4676ea07d68108a8873654"
+        },
+        {
+          "category": "Blatant",
+          "name": "VehicleSpeed",
+          "path": "prison life/155615604 - main/Blatant/VehicleSpeed.lua",
+          "sha256": "fdd31025d3724ddd6086b0d88751367ba5c65faf1dc3a93d4c2cf9b418240240"
+        },
+        {
+          "category": "Blatant",
+          "name": "VehicleWallbang",
+          "path": "prison life/155615604 - main/Blatant/VehicleWallbang.lua",
+          "sha256": "7ff02d3fe9a22abd57cf4dfb006ac05accd174cf68717d560afb363270eea6c6"
+        },
+        {
+          "category": "Render",
+          "name": "C4ESP",
+          "path": "prison life/155615604 - main/Render/C4ESP.lua",
+          "sha256": "5e91107faf0a32f69ebaa414ab51532b385ad0edbe76a52a5530052a71dd1a6a"
+        },
+        {
+          "category": "Render",
+          "name": "CameraPhase",
+          "path": "prison life/155615604 - main/Render/CameraPhase.lua",
+          "sha256": "81b2ec02dff42e95c6435c8c8d633bcdadb89005fcdec11e7e13650ef9e4cbed"
+        },
+        {
+          "category": "Render",
+          "name": "KillNotifications",
+          "path": "prison life/155615604 - main/Render/KillNotifications.lua",
+          "sha256": "e01b97605d04fe0efc5cca270d7c08705610db3d6b172af79955e47b3f72c75e"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoDetonate",
+          "path": "prison life/155615604 - main/Utility/AutoDetonate.lua",
+          "sha256": "db23222c51a1d61fb9dee8efa72e5105e3d8b788f9835f96ef936cee5a60c13f"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoReload",
+          "path": "prison life/155615604 - main/Utility/AutoReload.lua",
+          "sha256": "b6ffb3aa6c343cad8861e293dee3fb2e03f72ae12ca71df328e996c3959f21d9"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoToxic",
+          "path": "prison life/155615604 - main/Utility/AutoToxic.lua",
+          "sha256": "f1a089eb1442363abd3b148c86caec05b979e1032b706871aa74a80897c9158d"
+        },
+        {
+          "category": "Utility",
+          "name": "CheatDetector",
+          "path": "prison life/155615604 - main/Utility/CheatDetector.lua",
+          "sha256": "104c73350c6f07f80ed52bca7091461afd61a9aa62910624afcb78de14b42869"
+        },
+        {
+          "category": "Utility",
+          "name": "Disabler",
+          "path": "prison life/155615604 - main/Utility/Disabler.lua",
+          "sha256": "99449138286e095342096cf2e766a62bca46acdf11bf75ff394cbd6accc24970"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoArmor",
+          "path": "prison life/155615604 - main/Inventory/AutoArmor.lua",
+          "sha256": "2effe3c85fe76e4c9c21139fb09ca03f9a9419328f7354451c61778e518c41f8"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoHeal",
+          "path": "prison life/155615604 - main/Inventory/AutoHeal.lua",
+          "sha256": "08042a4880681b12ecde9d4ce07797fed26988c73bf046502554b53d486b8c82"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoHotbar",
+          "path": "prison life/155615604 - main/Inventory/AutoHotbar.lua",
+          "sha256": "4fcdca1bdf6100ab071ef5c232b19a5ecdd6a460cf8740ba5af80dac00b6dc80"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoPickup",
+          "path": "prison life/155615604 - main/Inventory/AutoPickup.lua",
+          "sha256": "1ee11c345c83973ebaac31f96c152e9e8c20b728069a68fb6020cbb06362f8af"
+        },
+        {
+          "category": "Legit",
+          "name": "BulletTracers",
+          "path": "prison life/155615604 - main/Legit/BulletTracers.lua",
+          "sha256": "71eba1a67b1e343aab8bbe6f2741410c7cf1963ccc0cedc4d7688ca5b235f9f9"
+        },
+        {
+          "category": "Legit",
+          "name": "Crosshair",
+          "path": "prison life/155615604 - main/Legit/Crosshair.lua",
+          "sha256": "43de35c0ef38fc4001fda6e063c9096a455e157bb711e5a9017dfde395b1be1b"
+        },
+        {
+          "category": "Legit",
+          "name": "DamageIndicator",
+          "path": "prison life/155615604 - main/Legit/DamageIndicator.lua",
+          "sha256": "cb4739f2b8fe5bf1a17649e8d44e5c70cd5f822b7f37f7d81a9d5eb06ec77ea9"
+        },
+        {
+          "category": "Legit",
+          "name": "HitSound",
+          "path": "prison life/155615604 - main/Legit/HitSound.lua",
+          "sha256": "54042b5462c807ae8cd85297b5fc1807fe1974fbf07ddd7e8975e62ee4162e83"
+        },
+        {
+          "category": "Legit",
+          "name": "KillSound",
+          "path": "prison life/155615604 - main/Legit/KillSound.lua",
+          "sha256": "1355f4549b3a741a7f7adc238156d06ab03b5a7546603bbc4468197815e2caa4"
+        },
+        {
+          "category": "Legit",
+          "name": "Viewmodel",
+          "path": "prison life/155615604 - main/Legit/Viewmodel.lua",
+          "sha256": "6252009238b419be5cc5b67cf7b2754bed377a46f8040f0a9dba36a0d96f05b7"
+        }
+      ],
+      "output_sha256": "155fc102042614dd32a167b699ad81071cc16a48bbeba6fffd7bb15bea06d7c5",
+      "source": "prison life/155615604 - main"
+    },
+    "redliner": {
+      "base_sha256": "9203015ba8c6deedef762ba7afe780ecf7e80dd95b4d975542387e9b67de0de7",
+      "module_count": 12,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "Reach",
+          "path": "redliner/115875349872417 - game/Combat/Reach.lua",
+          "sha256": "4830f7d1f7b3258f88460b1f8eca65288495ea86dad6cd84ee5273467bbf3e34"
+        },
+        {
+          "category": "Combat",
+          "name": "SilentAim",
+          "path": "redliner/115875349872417 - game/Combat/SilentAim.lua",
+          "sha256": "13ab9ca29444bfefe73cd5d40d3f1c76868868d34c763eed6ab63d8dfdff6eba"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiParry",
+          "path": "redliner/115875349872417 - game/Blatant/AntiParry.lua",
+          "sha256": "fd0eaff72527bfe7b901d1aaf1b070a49a7f3f18002fac429fcbbffd7e3ce9dd"
+        },
+        {
+          "category": "Blatant",
+          "name": "AutoParry",
+          "path": "redliner/115875349872417 - game/Blatant/AutoParry.lua",
+          "sha256": "d377a42bfe07c4c5718ee4d1188705cf88bed198989ace0839246cb332657607"
+        },
+        {
+          "category": "Blatant",
+          "name": "Fly",
+          "path": "redliner/115875349872417 - game/Blatant/Fly.lua",
+          "sha256": "8cd7dd5e90e7b0779836193358b8247c5c7b715f37b821b877159af61a179578"
+        },
+        {
+          "category": "Blatant",
+          "name": "HighJump",
+          "path": "redliner/115875349872417 - game/Blatant/HighJump.lua",
+          "sha256": "32ca97fbe2b0dd4b3ca68b3ae06771f55890e7a043a498f26ce05868836aeff1"
+        },
+        {
+          "category": "Blatant",
+          "name": "InfiniteDash",
+          "path": "redliner/115875349872417 - game/Blatant/InfiniteDash.lua",
+          "sha256": "9a0af44dfa8d3d311c01b65ab360fe69787ae3f4404e92c1981d8b7ca90e1e30"
+        },
+        {
+          "category": "Blatant",
+          "name": "Killaura",
+          "path": "redliner/115875349872417 - game/Blatant/Killaura.lua",
+          "sha256": "bb5e89789a87abdc7a555b5342040e36337bc69d1eefb4d53ca7821b99d59ea9"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoQueue",
+          "path": "redliner/115875349872417 - game/Utility/AutoQueue.lua",
+          "sha256": "f0fbb27143f7fd19eff275377510bf007be0a61dc0874728d24f975e640ee97a"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoToxic",
+          "path": "redliner/115875349872417 - game/Utility/AutoToxic.lua",
+          "sha256": "1156a23e5b86d4a78062dcb15e46f3befa6bba06fe23fe99d8234f0b104adad9"
+        },
+        {
+          "category": "Legit",
+          "name": "HitSound",
+          "path": "redliner/115875349872417 - game/Legit/HitSound.lua",
+          "sha256": "655c476b030f36ad0082d6237d2aed56351d56b230d21cc10f95870639bb2523"
+        },
+        {
+          "category": "Legit",
+          "name": "KillSound",
+          "path": "redliner/115875349872417 - game/Legit/KillSound.lua",
+          "sha256": "71af8740b689722cceef04743f53234025971e29de4a65bc95423c76f59da19e"
+        }
+      ],
+      "output_sha256": "423ad007a3c0c31f4d59bfe43558637d9c3d5d83c16cfe2a5c2cc7e88ee99708",
+      "source": "redliner/115875349872417 - game"
+    },
+    "skywars": {
+      "base_sha256": "10221e6fdb6d96c1fe14b47359c02c2eadaa6497102a6deeb4d54a74d21a04db",
+      "module_count": 16,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "AutoClicker",
+          "path": "skywars voxel/8768229691 - skywars game/Combat/AutoClicker.lua",
+          "sha256": "9e8325634a16896863b64c272cefb727da0e52af64e68fe00ab95466a209da5b"
+        },
+        {
+          "category": "Combat",
+          "name": "Sprint",
+          "path": "skywars voxel/8768229691 - skywars game/Combat/Sprint.lua",
+          "sha256": "7039ffc2e3cf80dd97c7c9ab74f838108800923eccf9a5221d771534fcb476df"
+        },
+        {
+          "category": "Combat",
+          "name": "Velocity",
+          "path": "skywars voxel/8768229691 - skywars game/Combat/Velocity.lua",
+          "sha256": "538259cfdab4a01b3c5f6bfdf834238a813664d6deae74ede60ecbf58a538243"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiFall",
+          "path": "skywars voxel/8768229691 - skywars game/Blatant/AntiFall.lua",
+          "sha256": "b0e3e90e88e446002ec3c68a3d5497a4a7926e888998ef2398e10001ee464d8f"
+        },
+        {
+          "category": "Blatant",
+          "name": "InvMove",
+          "path": "skywars voxel/8768229691 - skywars game/Blatant/InvMove.lua",
+          "sha256": "03de278552dec8e982bf7e57f6c1b0a73e32deec2a3c870ff48d971fa864d636"
+        },
+        {
+          "category": "Blatant",
+          "name": "Killaura",
+          "path": "skywars voxel/8768229691 - skywars game/Blatant/Killaura.lua",
+          "sha256": "808045dc96b5b7456e54ffddf7f827256c32f1f56a0061da7a94c0858f74cdea"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoFall",
+          "path": "skywars voxel/8768229691 - skywars game/Blatant/NoFall.lua",
+          "sha256": "8302232bd912d7d606c238da609d3a632dc7af3d9af7d1f3d8980aeffb5ebc43"
+        },
+        {
+          "category": "Blatant",
+          "name": "NoSlowdown",
+          "path": "skywars voxel/8768229691 - skywars game/Blatant/NoSlowdown.lua",
+          "sha256": "09a2552ef35b7111678271153116d9f77539d707f7f55d78cd3273e2eaa57fa0"
+        },
+        {
+          "category": "Blatant",
+          "name": "ProjectileAimbot",
+          "path": "skywars voxel/8768229691 - skywars game/Blatant/ProjectileAimbot.lua",
+          "sha256": "6cfe9d174a7a6ad59b5c15ff9a4bfce5673a3827536bb0f63034194700231348"
+        },
+        {
+          "category": "Blatant",
+          "name": "ProjectileAura",
+          "path": "skywars voxel/8768229691 - skywars game/Blatant/ProjectileAura.lua",
+          "sha256": "7a3b9bad9c0d19eeb8844cb468f47b8560dab96187bde31b79f4d7ce4f6f01a3"
+        },
+        {
+          "category": "Utility",
+          "name": "Scaffold",
+          "path": "skywars voxel/8768229691 - skywars game/Utility/Scaffold.lua",
+          "sha256": "e0b8fb855ce5c294c5385b51351db768e7f6d0fb89bcc0eacf66224731c5ad36"
+        },
+        {
+          "category": "World",
+          "name": "Breaker",
+          "path": "skywars voxel/8768229691 - skywars game/World/Breaker.lua",
+          "sha256": "a6e854c0ad94c1c13a8b3a86f016152062041fd253f28ebaa66a312d06d82299"
+        },
+        {
+          "category": "World",
+          "name": "ChestSteal",
+          "path": "skywars voxel/8768229691 - skywars game/World/ChestSteal.lua",
+          "sha256": "ca79c746b8aed62128c8a35c863c114defca78c53b58345cea88b7b9be1ae121"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoBuy",
+          "path": "skywars voxel/8768229691 - skywars game/Inventory/AutoBuy.lua",
+          "sha256": "fdcfdd3fbfd3a1ea43b81e7f4fd7573b74c074d9ce0e7fa06ca55e02d43db979"
+        },
+        {
+          "category": "Inventory",
+          "name": "AutoConsume",
+          "path": "skywars voxel/8768229691 - skywars game/Inventory/AutoConsume.lua",
+          "sha256": "307db6fcf713be9bf2ede37e46e46ed49a217d6a3a6c3d663f9c5d4041e92fd2"
+        },
+        {
+          "category": "Legit",
+          "name": "Viewmodel",
+          "path": "skywars voxel/8768229691 - skywars game/Legit/Viewmodel.lua",
+          "sha256": "d28c74b1c1d58532f1068880423218f4b30e70c8f1006950477c506853722544"
+        }
+      ],
+      "output_sha256": "57223951cb4b721fc7fe0ee60534e371c6f5920ed5b3728aac80c954d242d876",
+      "source": "skywars voxel/8768229691 - skywars game"
+    },
+    "skywars_lobby": {
+      "base_sha256": "c53e7a9410fc0a81d18c684bc2018ed10d6535f2b4333620cba063caaefad8ee",
+      "module_count": 1,
+      "modules": [
+        {
+          "category": "Standalone",
+          "name": "8542259458 - skywars lobby",
+          "path": "skywars voxel/8542259458 - skywars lobby.lua",
+          "sha256": "c53e7a9410fc0a81d18c684bc2018ed10d6535f2b4333620cba063caaefad8ee"
+        }
+      ],
+      "output_sha256": "a891745eda2f3b1d21a45551851d39e1ac6434a6f14306593445eb6bc62328e7",
+      "source": "skywars voxel/8542259458 - skywars lobby.lua"
+    },
+    "universal": {
+      "base_sha256": "c2d7da4e47ff844f9817389a7cb849fb88278e8492effc05d19309190809eb82",
+      "module_count": 69,
+      "modules": [
+        {
+          "category": "Combat",
+          "name": "AimAssist",
+          "path": "universal - base/Combat/AimAssist.lua",
+          "sha256": "9b524df5de40327d0dfcc52fb16c02c1b21035db67cdbd4a4d0da87e9d2dc722"
+        },
+        {
+          "category": "Combat",
+          "name": "AutoClicker",
+          "path": "universal - base/Combat/AutoClicker.lua",
+          "sha256": "3e168380bca71df36980cc868d8aaafb992c3a8ad479f83a2d8dc7e8d7daa550"
+        },
+        {
+          "category": "Combat",
+          "name": "Reach",
+          "path": "universal - base/Combat/Reach.lua",
+          "sha256": "2a2da73a65680326deda18e2e889ea512aaa6306d777f2f3cb284912debd69d6"
+        },
+        {
+          "category": "Combat",
+          "name": "SilentAim",
+          "path": "universal - base/Combat/SilentAim.lua",
+          "sha256": "c763949afe5944d2e9cffd2b92f8a1d2c2f96b9948108f697bcde4dd30ccf0cf"
+        },
+        {
+          "category": "Combat",
+          "name": "TriggerBot",
+          "path": "universal - base/Combat/TriggerBot.lua",
+          "sha256": "8ceeb9ad4b2abfe9e156ea22e4b2fb7a021dc091c6e805aa0938f0504f1277e2"
+        },
+        {
+          "category": "Blatant",
+          "name": "AntiFall",
+          "path": "universal - base/Blatant/AntiFall.lua",
+          "sha256": "69306345a1149adaa2d54535aa890095dc7e3e9215f9158f41ea6d618a86551a"
+        },
+        {
+          "category": "Blatant",
+          "name": "Fly",
+          "path": "universal - base/Blatant/Fly.lua",
+          "sha256": "f879d613f0172277b23e11888d9085cae48608805e7d9a9b791e6874974daf28"
+        },
+        {
+          "category": "Blatant",
+          "name": "HighJump",
+          "path": "universal - base/Blatant/HighJump.lua",
+          "sha256": "2690e47993ecd932aae1fdc554e20f75632b9c7d2b2f828f083d8ea343273a36"
+        },
+        {
+          "category": "Blatant",
+          "name": "HitBoxes",
+          "path": "universal - base/Blatant/HitBoxes.lua",
+          "sha256": "46b3d4a26f27a607fdb16a00f7f643ae172628a6aad6ce9be4a9d01a44e745f3"
+        },
+        {
+          "category": "Blatant",
+          "name": "Invisible",
+          "path": "universal - base/Blatant/Invisible.lua",
+          "sha256": "fbd31be15255261d845cc2906e16e8d0a7ac75b8b97d68f42bf1dbb82dad3b20"
+        },
+        {
+          "category": "Blatant",
+          "name": "Jesus",
+          "path": "universal - base/Blatant/Jesus.lua",
+          "sha256": "d4b29e4c6693bd97ea7c5b9e3c917b90ab0c9cbc1f262ce4bc879f28455acd30"
+        },
+        {
+          "category": "Blatant",
+          "name": "Killaura",
+          "path": "universal - base/Blatant/Killaura.lua",
+          "sha256": "fec4ff83a83bdabb7aad5e320397e77db9d9ccf9468a79f857b219f1e8ec921f"
+        },
+        {
+          "category": "Blatant",
+          "name": "LongJump",
+          "path": "universal - base/Blatant/LongJump.lua",
+          "sha256": "0e6f242b315cb76fe2ea5a13805d7d1f4f7414bd91f4239ba97ed6ef36044d6c"
+        },
+        {
+          "category": "Blatant",
+          "name": "MouseTP",
+          "path": "universal - base/Blatant/MouseTP.lua",
+          "sha256": "274df1d70f68217617d99806364c7dc5d8ba19cdaad5739c2de7de5adf974e44"
+        },
+        {
+          "category": "Blatant",
+          "name": "Phase",
+          "path": "universal - base/Blatant/Phase.lua",
+          "sha256": "91c68ede3bdcf8bd7fed6bf5d6950c972869039730643e4dbc6cf8a9b815d852"
+        },
+        {
+          "category": "Blatant",
+          "name": "Speed",
+          "path": "universal - base/Blatant/Speed.lua",
+          "sha256": "8663312333636af14a34bc826b6b4e7ada38fc4454944efba4b6e904f04cd03a"
+        },
+        {
+          "category": "Blatant",
+          "name": "Spider",
+          "path": "universal - base/Blatant/Spider.lua",
+          "sha256": "1b255788d5feea37e5fa495afe5956775d102123d5929588fe729f90a35baa53"
+        },
+        {
+          "category": "Blatant",
+          "name": "SpinBot",
+          "path": "universal - base/Blatant/SpinBot.lua",
+          "sha256": "356c21a70b6426638f63d14b43ec5de1d82a6cabe0497ca79a3af3fdcb28cac2"
+        },
+        {
+          "category": "Blatant",
+          "name": "Swim",
+          "path": "universal - base/Blatant/Swim.lua",
+          "sha256": "d71abef28ff4f43a57957525f339feb3525ff11080a8099aed497fbd35917200"
+        },
+        {
+          "category": "Blatant",
+          "name": "TargetStrafe",
+          "path": "universal - base/Blatant/TargetStrafe.lua",
+          "sha256": "1837abfb98f204a6a05129aef3d3c1c459f1a228c023bf0702b28a52f2919174"
+        },
+        {
+          "category": "Blatant",
+          "name": "Timer",
+          "path": "universal - base/Blatant/Timer.lua",
+          "sha256": "88b66cb1daf43b3bb26c8779e4333a1456b6929beb9cdd70883baf2b11500bb5"
+        },
+        {
+          "category": "Render",
+          "name": "Arrows",
+          "path": "universal - base/Render/Arrows.lua",
+          "sha256": "179e052e761bf4b762bb1f1b5f6db30bd76147e43c96173e739457e0400ad20a"
+        },
+        {
+          "category": "Render",
+          "name": "Chams",
+          "path": "universal - base/Render/Chams.lua",
+          "sha256": "3d4713a86097ffca453415d21b13c7b671cb7230e088f8feefdfedfe12effadd"
+        },
+        {
+          "category": "Render",
+          "name": "ESP",
+          "path": "universal - base/Render/ESP.lua",
+          "sha256": "252e62a29ed518d169e50bcde09e38abe6c34689b557df4c53a5373b8af606f7"
+        },
+        {
+          "category": "Render",
+          "name": "Fullbright",
+          "path": "universal - base/Render/Fullbright.lua",
+          "sha256": "a1a4fc960abbd235355966c1bfc245080fb906b60bcd982af853139603ce7b7d"
+        },
+        {
+          "category": "Render",
+          "name": "GamingChair",
+          "path": "universal - base/Render/GamingChair.lua",
+          "sha256": "b23ac472af95ace8e3b81e54eccf188abb0515bbd48c8eeff5197bdc689d33c0"
+        },
+        {
+          "category": "Render",
+          "name": "Health",
+          "path": "universal - base/Render/Health.lua",
+          "sha256": "cc88a859c51b956347627d63e6b6043cddaa1ef40a8e13f3f0fd174f40ca8ef3"
+        },
+        {
+          "category": "Render",
+          "name": "NameTags",
+          "path": "universal - base/Render/NameTags.lua",
+          "sha256": "faca5faaed1c1c3c3c2d63861eeb96a14279a3578824ca0bbada83a83b248519"
+        },
+        {
+          "category": "Render",
+          "name": "PlayerModel",
+          "path": "universal - base/Render/PlayerModel.lua",
+          "sha256": "94f72c8bd05345b59c37bc82224391adbc80888f1192e9fa70ede0d358edcad3"
+        },
+        {
+          "category": "Render",
+          "name": "Radar",
+          "path": "universal - base/Render/Radar.lua",
+          "sha256": "dcafc896c4677a497c7b0f4c77e927bfb676f2595319d3ecab3ad2e4931ee825"
+        },
+        {
+          "category": "Render",
+          "name": "Search",
+          "path": "universal - base/Render/Search.lua",
+          "sha256": "677084a18fb1a35f03934b6c54823d2d7cac0e517b53c485a4602ea62365dee5"
+        },
+        {
+          "category": "Render",
+          "name": "SessionInfo",
+          "path": "universal - base/Render/SessionInfo.lua",
+          "sha256": "e1001b8f8b9fe29eb4161838ebdb22ade0f64df522c0c49c1e5417a82caea8f0"
+        },
+        {
+          "category": "Render",
+          "name": "Spotify",
+          "path": "universal - base/Render/Spotify.lua",
+          "sha256": "6b6d8898282e19d1e6f4367e853f56f2a37754bf141d9b419b9d93a9fd0cabbb"
+        },
+        {
+          "category": "Render",
+          "name": "Tracers",
+          "path": "universal - base/Render/Tracers.lua",
+          "sha256": "2139a83ce1fa63fbbbd03d8d320d1e6d4215b709104072bfe1c8e3dce6c4133b"
+        },
+        {
+          "category": "Render",
+          "name": "Waypoints",
+          "path": "universal - base/Render/Waypoints.lua",
+          "sha256": "e2a640c22c2ce7a2e7b6665c7e9a3cf6018f63d5ac4950b6860a12efc8536ecd"
+        },
+        {
+          "category": "Utility",
+          "name": "AnimationPlayer",
+          "path": "universal - base/Utility/AnimationPlayer.lua",
+          "sha256": "a2cf5aa5a009727d9f5f62d34d9a0b24a51d768d96906848e55da0a6feb6901b"
+        },
+        {
+          "category": "Utility",
+          "name": "AntiRagdoll",
+          "path": "universal - base/Utility/AntiRagdoll.lua",
+          "sha256": "77695eead6c3b4a6646f9a2dbeb33f6a39536d6a8429bb76331ccb7c6c05eb13"
+        },
+        {
+          "category": "Utility",
+          "name": "AutoRejoin",
+          "path": "universal - base/Utility/AutoRejoin.lua",
+          "sha256": "9b655dca14f280069a3963ed260b52db267acda3c12d135378011766899b22ec"
+        },
+        {
+          "category": "Utility",
+          "name": "Blink",
+          "path": "universal - base/Utility/Blink.lua",
+          "sha256": "cb22dbd56012579cf9e753242ee21a633d5b5acf6178094d8f829905736eb3db"
+        },
+        {
+          "category": "Utility",
+          "name": "ChatSpammer",
+          "path": "universal - base/Utility/ChatSpammer.lua",
+          "sha256": "4047fe14601ef025ad5276afadd5955163cab4a3fecf0bcd552c36817e978a69"
+        },
+        {
+          "category": "Utility",
+          "name": "Disabler",
+          "path": "universal - base/Utility/Disabler.lua",
+          "sha256": "d34fa9814935c84468f616fe856ef41aa2bd9d088ffc736b5c350054d108aa23"
+        },
+        {
+          "category": "Utility",
+          "name": "HumSpoofer",
+          "path": "universal - base/Utility/HumSpoofer.lua",
+          "sha256": "e384ee7fb23152e0740ecd48b6b6282c294d643f76ccd2cef1e0144f9001df1a"
+        },
+        {
+          "category": "Utility",
+          "name": "Panic",
+          "path": "universal - base/Utility/Panic.lua",
+          "sha256": "f09641819f68b6ae934d4977aadf39f0eeb50057273fa9945be9120f5c56f536"
+        },
+        {
+          "category": "Utility",
+          "name": "Rejoin",
+          "path": "universal - base/Utility/Rejoin.lua",
+          "sha256": "b235c713ceddf5f3bc5357e77a815d1587f55ab7e29f983a51e960b844833587"
+        },
+        {
+          "category": "Utility",
+          "name": "ServerHop",
+          "path": "universal - base/Utility/ServerHop.lua",
+          "sha256": "8a7112f682b7ae6786716f88f19374924008528ae449b140676d86889765b2eb"
+        },
+        {
+          "category": "Utility",
+          "name": "StaffDetector",
+          "path": "universal - base/Utility/StaffDetector.lua",
+          "sha256": "a8374a67f01fe73b54e4e054d80c6e7713b91d95bde2d4e8273bd25653941925"
+        },
+        {
+          "category": "World",
+          "name": "Anti-AFK",
+          "path": "universal - base/World/Anti-AFK.lua",
+          "sha256": "b8df47944e36939cd9e45cd9798d507eab469ff4a21d5e9c82820163bbd128dc"
+        },
+        {
+          "category": "World",
+          "name": "FastProxPrompt",
+          "path": "universal - base/World/FastProxPrompt.lua",
+          "sha256": "f0f27c713da53f5bd170e0068a7a04eb1b65202f78e37c880cb50c4ad18602a3"
+        },
+        {
+          "category": "World",
+          "name": "Freecam",
+          "path": "universal - base/World/Freecam.lua",
+          "sha256": "6832db45ceb240265b2a3b1bd438b64bd6b5c012c1915f381fe2c4a47b56b1d4"
+        },
+        {
+          "category": "World",
+          "name": "Gravity",
+          "path": "universal - base/World/Gravity.lua",
+          "sha256": "b5e13238300f869915546fb294c42f2d387c389f88f2884ff0d63ac7072b2229"
+        },
+        {
+          "category": "World",
+          "name": "MurderMystery",
+          "path": "universal - base/World/MurderMystery.lua",
+          "sha256": "31e9230f8b7318be4372b09352c051e7c043ce076d2c7550ca3949b9877ffc88"
+        },
+        {
+          "category": "World",
+          "name": "Parkour",
+          "path": "universal - base/World/Parkour.lua",
+          "sha256": "4f15764832f2d37f86a907052f70dbe8f1e02a42911f58876be048559f06eb32"
+        },
+        {
+          "category": "World",
+          "name": "SafeWalk",
+          "path": "universal - base/World/SafeWalk.lua",
+          "sha256": "eb7430b9a9b00d3890d5fdd0476ec8ad1a677e499cd5e947215d16a56c8431aa"
+        },
+        {
+          "category": "World",
+          "name": "Wallhop",
+          "path": "universal - base/World/Wallhop.lua",
+          "sha256": "cb343a7392c9f4532f81c3c5d16cd0cd47a478e975437dd9d0d97f97e60e65f0"
+        },
+        {
+          "category": "World",
+          "name": "Xray",
+          "path": "universal - base/World/Xray.lua",
+          "sha256": "07b630d019e983436243bd9f3b1dd02319e5741da8307d109808bd88ed93963d"
+        },
+        {
+          "category": "Legit",
+          "name": "Atmosphere",
+          "path": "universal - base/Legit/Atmosphere.lua",
+          "sha256": "687ecdc4a264fabb659af345e243db89d9702c020d9b2f10866dbf107661b3a2"
+        },
+        {
+          "category": "Legit",
+          "name": "Breadcrumbs",
+          "path": "universal - base/Legit/Breadcrumbs.lua",
+          "sha256": "00ad6acfcbe2844aa93646dee97b3fc09681de1067a79b9b61c56745d59c4ce8"
+        },
+        {
+          "category": "Legit",
+          "name": "Cape",
+          "path": "universal - base/Legit/Cape.lua",
+          "sha256": "d99199ab36dba88ce238320babbe7c17defec76a81c9368851eb3facca13fc76"
+        },
+        {
+          "category": "Legit",
+          "name": "ChinaHat",
+          "path": "universal - base/Legit/ChinaHat.lua",
+          "sha256": "ff8aa949d795ffb255b3fb28ddc607352b95f930f8e10e3c296ee6b613941cf9"
+        },
+        {
+          "category": "Legit",
+          "name": "Clock",
+          "path": "universal - base/Legit/Clock.lua",
+          "sha256": "ebc1eb66d84a31e486f815d81eca776280ddb4753cdcf633db00bfde3bbc12e5"
+        },
+        {
+          "category": "Legit",
+          "name": "Disguise",
+          "path": "universal - base/Legit/Disguise.lua",
+          "sha256": "c94f0572a9ec1500821ccd7e5a4315442facef83dcfc1ee0e65f9e483cc7cf4f"
+        },
+        {
+          "category": "Legit",
+          "name": "FOV",
+          "path": "universal - base/Legit/FOV.lua",
+          "sha256": "e65175c4b4220a8e48d83fa8147efa83fbf0970111c4326d6f4c5edc927717de"
+        },
+        {
+          "category": "Legit",
+          "name": "FPS",
+          "path": "universal - base/Legit/FPS.lua",
+          "sha256": "7c0429ece094490ccb2328180e8586d36c2129317a4630262fd41c150dcbc74c"
+        },
+        {
+          "category": "Legit",
+          "name": "Keystrokes",
+          "path": "universal - base/Legit/Keystrokes.lua",
+          "sha256": "54aaca201109a0fed2d58bca6a3c515c4d8a0d350604c8d6cb4548c5bc269461"
+        },
+        {
+          "category": "Legit",
+          "name": "Memory",
+          "path": "universal - base/Legit/Memory.lua",
+          "sha256": "e832b5a8d8c469ba10a6a1f3bada86b261aefb12a18b1868d562b171dea3d619"
+        },
+        {
+          "category": "Legit",
+          "name": "Ping",
+          "path": "universal - base/Legit/Ping.lua",
+          "sha256": "7cd18309e43e752a52b9b1949a4cf16cb791774d694d265c81a29d632a681a9e"
+        },
+        {
+          "category": "Legit",
+          "name": "SongBeats",
+          "path": "universal - base/Legit/SongBeats.lua",
+          "sha256": "fada2fa9196026c28a3db94efab7a43874d8bc5bac519e06f1c31a1a63c4e6d9"
+        },
+        {
+          "category": "Legit",
+          "name": "Speedmeter",
+          "path": "universal - base/Legit/Speedmeter.lua",
+          "sha256": "d7d3b1988d4f8e7cf8034495bf9389016227afbc0cb9f05a824e848f364dbb3c"
+        },
+        {
+          "category": "Legit",
+          "name": "TimeChanger",
+          "path": "universal - base/Legit/TimeChanger.lua",
+          "sha256": "c63b0feca50a985b68ad07a97a54290c515eb75964aed0e4cd5f491440199347"
+        }
+      ],
+      "output_sha256": "06c862aea4e18be709d753c206c2c1667ac6536b9a9c8c568a7f5ba9a47a0d8d",
+      "source": "universal - base"
+    }
+  },
+  "categories": [
+    "Combat",
+    "Blatant",
+    "Render",
+    "Utility",
+    "World",
+    "Inventory",
+    "Legit"
+  ],
+  "libraries": {
+    "drawing.lua": "46b26cfac1e51beae89f0948a93752c06b29b24f8fbd53e9768838bf81b50508",
+    "entity.lua": "2e317d58f0a96b09c45cf5f79a06a860ea1a0b81e8e9dd9ce8f36eb82c287fe6",
+    "getvapeasset.lua": "e8c416b8686e6a85b2e46d563bdfe60db96019570cc35937b9ec3d14474f84df",
+    "hash.lua": "1543ee8bb4dd7b4c4cdac33410e176a5fcd597fc314a63336c04b23fc308f90d",
+    "prediction.lua": "0497e6e866733d96b974faec2aac691a8bb4ee660598635145e4b3f627eb10b6",
+    "vm.lua": "af774bd95fea89ee2a69973d007139c83a5564b5ed7fcc5edc69da334e6111d2"
+  },
+  "patches": {
+    "arena": [
+      "safe-run redirect"
+    ],
+    "bedwars": [
+      "safe-run redirect"
+    ],
+    "bedwars_lobby": [
+      "safe-run redirect"
+    ],
+    "blocktales": [
+      "safe-run redirect"
+    ],
+    "blockwars": [
+      "safe-run redirect"
+    ],
+    "bridge": [
+      "safe-run redirect"
+    ],
+    "flee": [
+      "safe-run redirect"
+    ],
+    "frontlines": [
+      "safe-run redirect",
+      "direct-context actor compatibility"
+    ],
+    "jailbreak": [
+      "safe-run redirect"
+    ],
+    "prison": [
+      "safe-run redirect"
+    ],
+    "redliner": [
+      "safe-run redirect",
+      "direct-context actor compatibility"
+    ],
+    "skywars": [
+      "safe-run redirect"
+    ],
+    "universal": [
+      "safe-run redirect"
+    ]
+  },
+  "upstream_commit": "4204f30808488572ea36729e56b1032eaae66de0",
+  "upstream_repo": "7GrandDadPGN/VapeV4ForRoblox"
+}
