@@ -18,6 +18,8 @@ loadstring(game:HttpGet(
     true
 ))()
 
+task.wait (1)
+
 getgenv().SCRIPT_KEY = "put your fiverose key here"
 
 loadstring(game:HttpGet(
