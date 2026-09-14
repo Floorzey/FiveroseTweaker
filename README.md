@@ -72,9 +72,9 @@ If you are interested in buying Fiverose, you can get it here:
 
 https://fiverose.xyz
 
-<img width="1062" height="570" alt="image" src="https://github.com/user-attachments/assets/f55e5f3f-215f-4fea-be11-8586c551ea33" />
+<img width="1188" height="694" alt="image" src="https://github.com/user-attachments/assets/4eeb33ac-a8eb-4fb1-9cae-b9bc2c6c26d7" />
 
-<img width="1189" height="695" alt="image" src="https://github.com/user-attachments/assets/ac72ac5f-c197-4e7a-bd10-bb46fce03054" />
+<img width="1064" height="573" alt="image" src="https://github.com/user-attachments/assets/9ece4f19-7436-4b88-8d74-5cf2e8046eb8" />
 
 # SHOWCASE
 
