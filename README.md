@@ -12,7 +12,7 @@ This project has been rewritten and brought back. Updates may still be irregular
 
 ```lua
 -- Please give Fiverose and FiveroseTweaker a good amount of time to load.
--- It should usually take around 15-20 seconds on a good executor. (professional optimization)
+-- Real Fiverose should usually take around 15-20 seconds on a good executor. (professional optimization)
 
 getgenv().SCRIPT_KEY = "put your fiverose key here"
 
