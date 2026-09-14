@@ -73,7 +73,7 @@ Universal
 
 If you are interested in buying Fiverose, you can get it here:
 
-https://fiverose.xyz
+https://fiverose.xyz (i dont recommend buying ts)
 
 <img width="1188" height="694" alt="image" src="https://github.com/user-attachments/assets/4eeb33ac-a8eb-4fb1-9cae-b9bc2c6c26d7" />
 
