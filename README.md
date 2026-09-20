@@ -1,6 +1,6 @@
 # FIVEROSE TWEAKER
 
-Notice: Fiverose itself is honestly paid slop so any game you want to load into, you will be met with a long ass fps spike. This issue is from fiverose and not FiveroseTweaker. (it also hates loading into games that are not strictly sports and also games which use fake character controllers)
+Notice: Fiverose itself is honestly paid slop so any game you want to load into, you will be met with a long ass fps spike. This issue is from fiverose and not FiveroseTweaker. (it also hates loading into games that have some type of goofy coregui tweak)
 
 FiveroseTweaker adds modules and features from Vape to Fiverose.
 
